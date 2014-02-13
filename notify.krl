@@ -20,7 +20,7 @@ ruleset a1299x176 {
           query = page:url("query");
         }
         
-       // notify("Hello", "query") with position = bottom-left;
+       notify("Hello", "query") with position = bottom-left;
         
     }
 }
