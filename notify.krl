@@ -7,10 +7,10 @@ ruleset a1299x176 {
     dispatch {
         // domain "exampley.com"
     }
-    rule first_rule {
+    rule rule_1_2 {
         select when pageview ".*" setting ()
-        // Display notification that will not fade.
+        
         notify("Hello World", "This is a perminant notify.") with sticky = true;
-        notify("Hello World Again!", "This is a second notify");
+        notify("Hello World Again!", "This is a second notify") with sticky = true;
     }
 }
