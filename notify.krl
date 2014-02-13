@@ -24,9 +24,13 @@ ruleset a1299x176 {
             name = getName(query);
             x = app:name + 1
         }
-        //if ((not name eq "") && (x < 5)) then {
+        if ((not name eq "") && (x < 5)) then {
             notify("Part 3", "Hello " + name);  
-        //}
+        }
+        else {
+            notify("Part 3", "Hello Monkey");
+        }
+        
         fired {
             last
         }
