@@ -9,8 +9,8 @@ ruleset a1299x176 {
     
     rule rule_1 {
         select when pageview ".*" {
-            notify("Hello World", "This is a perminant notify.") with sticky = true;
-            notify("Hello World Again!", "This is a second notify");
+            notify("Part 1 - Hello World", "This is a perminant notify.") with sticky = true;
+            notify("Part 2 - Hello Again!", "This is a second notify");
         }
     }
     
@@ -25,7 +25,7 @@ ruleset a1299x176 {
             x = app:name + 1
         }
         //if ((not name eq "") && (x < 5)) then {
-            notify("test", "Hello " + name);  
+            notify("Part 3", "Hello " + name);  
         //}
         fired {
             last
