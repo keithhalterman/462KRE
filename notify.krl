@@ -7,20 +7,28 @@ ruleset a1299x176 {
     dispatch {
     }
     
-    rule rule_1_2 {
+    rule rule_1 {
         select when pageview ".*" {
             notify("Hello World", "This is a perminant notify.") with sticky = true;
             notify("Hello World Again!", "This is a second notify");
         }
     }
     
-    rule rule_3 {
+   rule rule_2 {
         select when pageview ".*"
         pre {
-          query = page:url("query");
+            query = page:url("query");
+            getName = function(string) {
+                (string.extract(re/(?:name=)(\w*)/g)).join("")
+            };
+            name = getName(query);
+            x = app:name + 1
         }
-        
-       notify("Hello", "query"); //with position = bottom-left;
-        
+        if ((not name eq "") && (x < 5)) then {
+            notify("test", "Hello " + name);  
+        }
+        fired {
+            last
+        }
     }
 }
