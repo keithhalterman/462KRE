@@ -15,6 +15,7 @@ ruleset a1299x176 {
     }
     
     rule rule_3 {
+        select when pageview ".*"
         pre {
           query = page:url("query");
         }
