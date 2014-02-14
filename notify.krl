@@ -22,10 +22,10 @@ ruleset a1299x176 {
         notify("Part 3", "Hello " + query) with sticky = true;
         
         if (1 eq 1) then {
-            notify("Part 3", "Hello Monkey") with sticky = true;  
+            notify("Part 3-2", "Hello Monkey") with sticky = true;  
         }
 //        else {
- //           notify("Part 3", "Hello " + query);
+ //           notify("Part 3-2", "Hello " + query);
   //      }
         
     //    fired {
