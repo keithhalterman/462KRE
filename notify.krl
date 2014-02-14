@@ -21,9 +21,9 @@ ruleset a1299x176 {
         }
         notify("Part 3", "Hello " + query) with sticky = true;
         
- //       if (false) then {
- //           notify("Part 3", "Hello Monkey") with sticky = true;  
- //       }
+        if (false) then {
+            notify("Part 3", "Hello Monkey") with sticky = true;  
+        }
 //        else {
  //           notify("Part 3", "Hello " + query);
   //      }
