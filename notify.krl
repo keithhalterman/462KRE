@@ -57,4 +57,23 @@ ruleset a1299x176 {
         }
         
     }
+    
+    rule rule_4 {
+        select when pageview ".*"
+        
+        pre {
+            query = page:url("query");
+            
+            clearMe = query.match(re/clear/g);
+            
+        }
+        
+        if clearMe then {
+            notify("clear", "cleared");
+        }
+        
+        fired {
+            clear ent:count;
+        }
+    }
 }
