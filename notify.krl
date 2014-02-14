@@ -19,7 +19,7 @@ ruleset a1299x176 {
         pre {
             query = page:url("query");
             getName = function(string) {
-                query.extract(re/(?:name=(\w*))/).join("")
+                query.extract(re/(?:[&?]name=(\w*))/).join("")
             };
             name = getName(query);
         }
@@ -35,7 +35,7 @@ ruleset a1299x176 {
         pre {
             query = page:url("query");
             getName = function(string) {
-                query.extract(re/(?:name=(\w*))/).join("")
+                query.extract(re/(?:[&?]name=(\w*))/).join("")
             };
             name = getName(query);
         }
