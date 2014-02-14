@@ -20,7 +20,7 @@ ruleset a1299x176 {
             query = page:url("query");
         }
         
-        if (query eq "") then {
+        if (not query eq "") then {
             notify("Part 3-2", "Hello Monkey") with sticky = true;  
         }
     }
