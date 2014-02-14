@@ -15,23 +15,13 @@ ruleset a1299x176 {
     }
     
    rule rule_2 {
-        select when pageview ".*"{
+        select when pageview ".*"
         pre {
             query = page:url("query");
         }
         
-        notify("Part 3", "Hello " + query) with sticky = true;
-        
-        if (1 eq 1) then {
+        if (query eq "") then {
             notify("Part 3-2", "Hello Monkey") with sticky = true;  
         }
-        }
-//        else {
- //           notify("Part 3-2", "Hello " + query);
-  //      }
-        
-    //    fired {
-     //       last
-      //  }
     }
 }
