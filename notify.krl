@@ -18,14 +18,15 @@ ruleset a1299x176 {
         select when pageview ".*"
         pre {
             query = page:url("query");
-            getName = function(string) {
-                (string.extract(re/(?:name=)(\w*)/g)).join("")
-            };
-            name = getName(query);
-            x = app:name + 1
+            notify("Part 3", "Hello " + query); 
+        //    getName = function(string) {
+        //        (string.extract(re/(?:name=)(\w*)/g)).join("")
+         //   };
+         //   name = getName(query);
+         //   x = app:name + 1
         }
         //if ((not name eq "") && (x < 5)) then {
-            notify("Part 3", "Hello " + name);  
+         //   notify("Part 3", "Hello " + query);  
         //}
         //else {
          //   notify("Part 3", "Hello Monkey");
