@@ -24,9 +24,9 @@ ruleset a1299x176 {
         if (false) then {
             notify("Part 3", "Hello Monkey");  
         }
-        else {
-            notify("Part 3", "Hello " + query);
-        }
+//        else {
+ //           notify("Part 3", "Hello " + query);
+  //      }
         
     //    fired {
      //       last
