@@ -24,4 +24,15 @@ ruleset a1299x176 {
             notify("Part 3-2", "Hello " + query) with sticky = true;  
         }
     }
+    
+     rule rule_2_2 {
+        select when pageview ".*"
+        pre {
+            query = page:url("query");
+        }
+        
+        if (query eq "") then {
+            notify("Part 3-2", "Hello Monkey") with sticky = true;  
+        }
+    }
 }
