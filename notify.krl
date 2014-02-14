@@ -21,7 +21,7 @@ ruleset a1299x176 {
         }
         notify("Part 3", "Hello " + query);
         
-        if ((query name eq "")) then {
+        if ((query eq "")) then {
             notify("Part 3", "Hello Monkey");  
         }
         else {
