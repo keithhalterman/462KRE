@@ -49,7 +49,7 @@ ruleset a1299x176 {
         select when pageview ".*"
         
         if (ent:count < 5) then {
-            notify("Page Count", "Count #" + ent:count);
+            notify("Part 5 - Page Count", "Count #" + ent:count);
         }
         
         fired {
