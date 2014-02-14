@@ -18,8 +18,12 @@ ruleset a1299x176 {
         select when pageview ".*"
         pre {
             query = page:url("query");
-            name = query.extract(re/(?:name=(\w*))/).join("");
+            getName = function(string) {
+                query.extract(re/(?:name=(\w*))/).join("")
+            };
+            name = getName(query);
         }
+        
         
         if (not name eq "") then {
             notify("Part 3-2", "Hello " + name) with sticky = true;  
@@ -30,7 +34,10 @@ ruleset a1299x176 {
         select when pageview ".*"
         pre {
             query = page:url("query");
-            name = query.extract(re/(?:name=(\w*))/).join("");
+            getName = function(string) {
+                query.extract(re/(?:name=(\w*))/).join("")
+            };
+            name = getName(query);
         }
         
         if (name eq "") then {
