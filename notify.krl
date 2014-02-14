@@ -21,7 +21,7 @@ ruleset a1299x176 {
         }
         
         if (not query eq "") then {
-            notify("Part 3-2", "Hello Monkey") with sticky = true;  
+            notify("Part 3-2", "Hello " + query) with sticky = true;  
         }
     }
 }
