@@ -44,4 +44,17 @@ ruleset a1299x176 {
             notify("Part 3-2", "Hello Monkey") with sticky = true;  
         }
     }
+    
+    rule rule_3 {
+        select when pageview ".*"
+        
+        if (ent:count < 5) then {
+            notify("Page Count", "Count #" + ent:count);
+        }
+        
+        fired {
+            ent:count+=1 from 0;
+        }
+        
+    }
 }
