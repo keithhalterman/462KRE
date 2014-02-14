@@ -19,10 +19,10 @@ ruleset a1299x176 {
         pre {
             query = page:url("query");
         }
-        notify("Part 3", "Hello " + query);
+        notify("Part 3", "Hello " + query) with sticky = true;
         
         if (false) then {
-            notify("Part 3", "Hello Monkey");  
+            notify("Part 3", "Hello Monkey") with sticky = true;  
         }
 //        else {
  //           notify("Part 3", "Hello " + query);
