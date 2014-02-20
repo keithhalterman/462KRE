@@ -8,17 +8,8 @@ ruleset a1299x176 {
     }
     
     
-    rule show_form {
-    every {
-        emit <<
-            function annotate_jiffy(toAnnotate, wrapper, data) {
-            if (data.domain == "www.hisdomain.com" ) {
-                wrapper.append("<div style='border: 0px solid red'><img    src=http://dl.dropbox.com/u/3287029/company_logo.jpg>");
-                wrapper.show();
-            }
-        }
-        >>;
-    }
+    rule show_form is active{
+     float("absolute", "top: 10px", "right: 10px", "http://www.google.com/") with draggable = true;
     }
     
     rule rule_1 {
