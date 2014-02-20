@@ -21,10 +21,15 @@ ruleset a1299x176 {
             >>;
         } 
         
-        if true then {
+        if ent:firstname.isnull() then {
         	append("#main", form);
         	watch("#form", "submit");
         }
+    }
+    
+    rule show_name {
+    	select when pageview ".*"
+    	replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
     }
     
     rule clicked_rule {
