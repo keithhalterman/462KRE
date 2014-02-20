@@ -8,9 +8,14 @@ ruleset a1299x176 {
     }
     
         
-    rule show_form is active{
+    rule show_form{
         select using ".*"
-        append("#main", "<span style=\"color:black;\">| You fired the after rule </span>");
+        append("#main", "<form action="form_action.asp" method="get" name="myForm">
+                        First name: <input type="text" name="fname"><br>
+                        Last name: <input type="text" name="lname"><br>
+                        <input type="button" onclick="formSubmit()" value="Send form data!">
+                        </form>"
+                        );
     }
     
     
