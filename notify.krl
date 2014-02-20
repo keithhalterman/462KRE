@@ -19,6 +19,11 @@ ruleset a1299x176 {
         }
     }
     
+    rule clicked_rule {
+        select when web click "#watched"
+        notify("You clicked", 'Watch');
+    }
+    
     
     rule rule_1 {
         select when pageview ".*" {
