@@ -20,7 +20,7 @@ ruleset a1299x176 {
     }
     
     rule clicked_rule {
-        select when web click "#watched"
+        select when web click "#form"
         notify("You clicked", 'Watch');
     }
     
