@@ -15,6 +15,7 @@ ruleset a1299x176 {
             append('#main', 'Last name: <input type="text" name="lname"><br>');
             append('#main', '<input type="submit" value="submit">');
             append('#main', '</form>');
+            watch("#form", "submit");
         }
     }
     
