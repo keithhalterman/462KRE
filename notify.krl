@@ -51,7 +51,9 @@ ruleset a1299x176 {
     
     rule show_name {
     	select when pageview ".*"
-    	replace_inner("#main", "Hello " + ent:firstname + " " +  ent:lastname);
+    	if not ent:firstname.isnull() then {
+    		replace_inner("#main", "Hello " + ent:firstname + " " +  ent:lastname);
+    	}
     }
     
     rule clicked_rule {
