@@ -7,7 +7,28 @@ ruleset a1299x176 {
     dispatch {
     }
     
+    rule clear_names {
+        select when pageview ".*"
+        pre {
+            query = page:url("query");
+            getName = function(string) {
+                query.extract(re/(?:^clear=(\w*))|(?:&clear=(\w*))/).join("")
+            };
+            name = getName(query);
+        }
         
+        
+        if (name eq "1") then {
+            	notify("Goodbye", ent:firstname + " is being cleared") with sticky = true;
+        }
+        fired {
+            	clear ent:firstname;
+        	clear ent:lastname;
+          	set ent:firstname null;
+          	set ent:lastname null;
+        }
+    }
+    
     rule show_form {
         select when pageview ".*" 
         pre {
@@ -40,28 +61,6 @@ ruleset a1299x176 {
         fired {
        		set ent:firstname event:attr("firstname");
 		set ent:lastname event:attr("lastname");
-        }
-    }
-    
-    rule clear_names {
-        select when pageview ".*"
-        pre {
-            query = page:url("query");
-            getName = function(string) {
-                query.extract(re/(?:^clear=(\w*))|(?:&clear=(\w*))/).join("")
-            };
-            name = getName(query);
-        }
-        
-        
-        if (name eq "1") then {
-            	notify("Goodbye", ent:firstname + " is being cleared") with sticky = true;
-        }
-        fired {
-            	clear ent:firstname;
-        	clear ent:lastname;
-          	set ent:firstname null;
-          	set ent:lastname null;
         }
     }
 }
