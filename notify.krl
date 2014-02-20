@@ -1,6 +1,6 @@
 ruleset a1299x176 {
     meta {
-        name "Lab 3"
+        name "Lab 2"
         author "Keith Halterman"
         logging off
     }
@@ -9,7 +9,8 @@ ruleset a1299x176 {
     
     
     rule show_form is active{
-     float("absolute", "top: 10px", "right: 10px", "http://www.google.com/") with draggable = true;
+        select using ".*" setting ()
+        float("absolute", "top: 10px", "right: 10px", "http://www.google.com/") with draggable = true;
     }
     
     rule rule_1 {
