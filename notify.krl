@@ -9,8 +9,8 @@ ruleset a1299x176 {
     
         
     rule show_form is active{
-        select using ".*" setting ()
-        float("absolute", "top: 10px", "right: 10px", "http://www.google.com/") with draggable = true;
+        select using ".*"
+        append("#main", "<span style=\"color:black;\">| You fired the after rule </span>");
     }
     
     
