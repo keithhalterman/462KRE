@@ -1,10 +1,22 @@
 ruleset a1299x176 {
     meta {
-        name "Lab 2"
+        name "Lab 3"
         author "Keith Halterman"
         logging off
     }
     dispatch {
+    }
+    
+    
+    rule show_form {
+        emit <<
+            function annotate_jiffy(toAnnotate, wrapper, data) {
+            if (data.domain == "www.hisdomain.com" ) {
+                wrapper.append("<div style='border: 0px solid red'><img    src=http://dl.dropbox.com/u/3287029/company_logo.jpg>");
+                wrapper.show();
+            }
+        }
+        >>;
     }
     
     rule rule_1 {
