@@ -10,7 +10,7 @@ ruleset a1299x176 {
         
     rule show_form{
         select using ".*"
-        append('#main', '<form action="form_action.asp" method="get" name="myForm">');
+        append('#main', '<form>');
         append('#main', 'First name: <input type="text" name="fname"><br>');
         append('#main', 'Last name: <input type="text" name="lname"><br>');
         append('#main', '<input type="submit" value="submit">');
