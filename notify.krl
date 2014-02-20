@@ -21,10 +21,10 @@ ruleset a1299x176 {
             >>;
         } 
         
-        if ent:firstname.isnull() then {
+        //if ent:firstname.isnull() then {
         	append('#main', form);
         	watch("#form", "submit");
-        	}
+        //	}
         
     }
     
