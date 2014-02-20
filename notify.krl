@@ -13,7 +13,7 @@ ruleset a1299x176 {
             append('#main', '<form>');
             append('#main', 'First name: <input type="text" name="fname"><br>');
             append('#main', 'Last name: <input type="text" name="lname"><br>');
-            append('#main', '<input type="submit" value="submit">');
+            append('#main', '<input type="submit" value="submit" id="submit">');
             append('#main', '</form>');
             watch("#form", "submit");
         }
