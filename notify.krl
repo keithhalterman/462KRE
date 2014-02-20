@@ -7,12 +7,6 @@ ruleset a1299x176 {
     dispatch {
     }
     
-    
-    rule show_form is active{
-        select using ".*" setting ()
-        float("absolute", "top: 10px", "right: 10px", "http://www.google.com/") with draggable = true;
-    }
-    
     rule rule_1 {
         select when pageview ".*" {
             notify("Part 1 - Hello World", "This is a perminant notify.") with sticky = true;
