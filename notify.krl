@@ -9,7 +9,7 @@ ruleset a1299x176 {
     
         
     rule show_form {
-        select when pageview ".*"
+        select when pageview ".*"{
         pre {
             form = <<
                 <p>A Wild Form Is Approaching</p>
@@ -25,6 +25,7 @@ ruleset a1299x176 {
         	append('#main', form);
         	watch("#form", "submit");
         //	}
+        }
         
     }
     
