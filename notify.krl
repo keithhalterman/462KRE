@@ -43,7 +43,7 @@ ruleset a1299x176 {
         }
     }
     
-    rule clear {
+    rule clear_names {
         select when pageview ".*"
         pre {
             query = page:url("query");
@@ -55,7 +55,9 @@ ruleset a1299x176 {
         
         
         if (name eq "1") then {
-            	notify("Goodbye", ent:firstname + " is being cleared") with sticky = true;  
+            	notify("Goodbye", ent:firstname + " is being cleared") with sticky = true;
+        }
+        fired {
             	clear ent:firstname;
         	clear ent:lastname;
           	set ent:firstname null;
