@@ -9,6 +9,7 @@ ruleset a1299x176 {
     
     
     rule show_form {
+    every {
         emit <<
             function annotate_jiffy(toAnnotate, wrapper, data) {
             if (data.domain == "www.hisdomain.com" ) {
@@ -17,6 +18,7 @@ ruleset a1299x176 {
             }
         }
         >>;
+    }
     }
     
     rule rule_1 {
