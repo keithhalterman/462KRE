@@ -9,7 +9,7 @@ ruleset a1299x176 {
     
         
     rule show_form {
-        select when pageview ".*"
+        select when pageview ".*" 
         pre {
             form = <<
                 <p>A Wild Form Is Approaching</p> 
@@ -21,13 +21,20 @@ ruleset a1299x176 {
             >>;
         } 
         
-        //set ent:firstname null;
-        
         if ent:firstname.isnull() then {
         	append("#main", form);
         	watch("#form", "submit");
         }
-        
-        
+    }
+    
+    rule clicked_rule {
+        select when web submit "#form" {
+        notify("ITS WORKING", "ITS WORKING") with sticky = true;
+        replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
+        }
+        fired {
+        	set ent:firstname event:attr("firstname");
+		    set ent:lastname event:attr("lastname");
+        }
     }
 }
