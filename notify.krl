@@ -9,10 +9,10 @@ ruleset a1299x176 {
     
         
     rule show_form {
-        select when pageview ".*"{
+        select when pageview ".*"
         pre {
             form = <<
-                <p>A Wild Form Is Approaching</p>
+                <p>A Wild Form Is Approaching</p> 
                 <form id="form" onsubmit="return false">
                 First name: <input type="text" name="firstname"><br>
                 Last name: <input type="text" name="lastname">
@@ -21,11 +21,13 @@ ruleset a1299x176 {
             >>;
         } 
         
-        //if ent:firstname.isnull() then {
+        set ent:firstname null;
+        
+        if ent:firstname.isnull() then {
         	append('#main', form);
         	watch("#form", "submit");
-        //	}
         }
+        
         
     }
     
