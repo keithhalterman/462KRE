@@ -9,12 +9,13 @@ ruleset a1299x176 {
     
         
     rule show_form{
-        select using '.*'
-        append('#main', '<form>');
-        append('#main', 'First name: <input type="text" name="fname"><br>');
-        append('#main', 'Last name: <input type="text" name="lname"><br>');
-        append('#main', '<input type="submit" value="submit">');
-        append('#main', '</form>');
+        select when pageview '.*' {
+            append('#main', '<form>');
+            append('#main', 'First name: <input type="text" name="fname"><br>');
+            append('#main', 'Last name: <input type="text" name="lname"><br>');
+            append('#main', '<input type="submit" value="submit">');
+            append('#main', '</form>');
+        }
     }
     
     
