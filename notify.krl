@@ -13,7 +13,7 @@ ruleset a1299x176 {
         append("#main", '<form action="form_action.asp" method="get" name="myForm">');
         append("#main", 'First name: <input type="text" name="fname"><br>');
         append("#main", 'Last name: <input type="text" name="lname"><br>');
-        append("#main", '<input type="button" onclick="formSubmit()" value="Send form data!">');
+        append("#main", '<input type="button" value="Send form data!">');
         append("#main", '</form>');
     }
     
