@@ -21,7 +21,7 @@ ruleset a1299x176 {
             >>;
         } 
         
-        if ent:firstname.isnull() then {
+        if true then {
         	append("#main", form);
         	watch("#form", "submit");
         }
