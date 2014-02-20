@@ -12,7 +12,7 @@ ruleset a1299x176 {
         select when pageview ".*" 
         pre {
             form = <<
-                <p>A Wild Form Is Approaching</p> 
+                <p>Hello!</p> 
                 <form id="form" onsubmit="return false">
                 First name: <input type="text" name="firstname"><br>
                 Last name: <input type="text" name="lastname">
@@ -29,12 +29,12 @@ ruleset a1299x176 {
     
     rule clicked_rule {
         select when web submit "#form" {
-        notify("ITS WORKING", "ITS WORKING") with sticky = true;
-        replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
+        	notify("Success!", "Your name has been saved") with sticky = true;
+		replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
         }
         fired {
-        	set ent:firstname event:attr("firstname");
-		    set ent:lastname event:attr("lastname");
+       		set ent:firstname event:attr("firstname");
+		set ent:lastname event:attr("lastname");
         }
     }
 }
