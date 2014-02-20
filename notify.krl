@@ -10,6 +10,7 @@ ruleset a1299x176 {
         
     rule show_form{
         select using ".*"
+        append("#main", "<span style=\"color:red;\">| You fired the after rule </span>");
         append("#main", "<span><form action='form_action.asp' method='get' name='\'myForm'> ");
         append("#main", "First name: <input type='text' name='fname'><br> ");
         append("#main", "Last name: <input type='text' name='lname'><br> ");
