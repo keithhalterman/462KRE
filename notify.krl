@@ -8,20 +8,24 @@ ruleset a1299x176 {
     }
     
         
-    rule show_form{
-        select when pageview '.*' {
-            append('#main', '<form>');
-            append('#main', 'First name: <input type="text" name="fname"><br>');
-            append('#main', 'Last name: <input type="text" name="lname"><br>');
-            append('#main', '<input type="submit" value="submit" id="submit">');
-            append('#main', '</form>');
-            watch("#form", "submit");
-        }
-    }
-    
-    rule clicked_rule {
-        select when web click "#form"
-        notify("You clicked", 'Watch');
+    rule show_form {
+        select when pageview ".*"
+        pre {
+            form = <<
+                <p>A Wild Form Is Approaching</p>
+                <form id="form" onsubmit="return false">
+                First name: <input type="text" name="firstname"><br>
+                Last name: <input type="text" name="lastname">
+                <input type="submit" value="Submit">
+                </form>
+            >>;
+        } 
+        
+        if ent:firstname.isnull() then {
+        	append('#main', form);
+        	watch("#form", "submit");
+        	}
+        
     }
     
     
