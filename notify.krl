@@ -29,7 +29,7 @@ ruleset a1299x176 {
     
     rule show_name {
     	select when pageview ".*"
-    	replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
+    	replace_inner("#main", "Hello " + ent:firstname + " " +  ent:lastname);
     }
     
     rule clicked_rule {
