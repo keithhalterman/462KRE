@@ -9,7 +9,7 @@ ruleset a1299x176 {
     
         
     rule show_form{
-        select using ".*"
+        select using '.*'
         append('#main', '<form>');
         append('#main', 'First name: <input type="text" name="fname"><br>');
         append('#main', 'Last name: <input type="text" name="lname"><br>');
