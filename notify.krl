@@ -13,10 +13,7 @@ ruleset a1299x176 {
     	findMovie = function(title){
     		
     		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
-    		body = result.pick("$.content").decode();
-		movieArray = body.pick("$.movies");
-		movie = movieArray[0];
-    		movie;
+    		object = result.pick("$.content").decode();
     	}
     
     }
@@ -39,17 +36,14 @@ ruleset a1299x176 {
 	}
     }
     
-    rule show_name {
-    	select when pageview ".*"
-    	if not ent:firstname.isnull() then {
-    		replace_inner("#main", "Movie " + ent:movieTitle)
-    	}
-    }
-    
     rule clicked_rule {
         select when web submit "#form" 
         pre {
-        	movieInfo = findMovie(event:attr("movieTitle"));
+        	moviesObject = findMovie(event:attr("movieTitle"));
+        	count = object.pick("$.total");
+        	movieArray = moviesObject.pick("$.movies");
+        	movieInfo = movieArray[0];
+    		
         	
         	thumbnail = movieInfo.pick("$.posters").pick("$.thumbnail");
         	title = movieInfo.pick("$.title");
