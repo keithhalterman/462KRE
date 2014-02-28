@@ -40,11 +40,11 @@ ruleset a1299x176 {
             >>;
         } 
         
-        if ent:firstname.isnull() then {
-        	notify("Welcome!", "Please enter your name") with sticky = true;
-        	append("#main", form);
-        	watch("#form", "submit");
-        }
+       
+        notify("Welcome!", "Please enter your name") with sticky = true;
+        append("#main", form);
+        watch("#form", "submit");
+        
     }
     
     rule show_name {
