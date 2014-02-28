@@ -41,10 +41,13 @@ ruleset a1299x176 {
         select when web submit "#form" 
         pre {
         	moviesObject = findMovie(event:attr("movieTitle"));
-        	count = object.pick("$.total");
+        	count = moviesObject.pick("$.total");
         }
         if count eq 0 then {
         	replace_inner("#main", "<br>No Movie Found");
+        }
+        fired {
+	       last
         }
     }
     
@@ -52,7 +55,7 @@ ruleset a1299x176 {
         select when web submit "#form" 
         pre {
         	moviesObject = findMovie(event:attr("movieTitle"));
-        	count = object.pick("$.total");
+        	count = moviesObject.pick("$.total");
         	movieArray = moviesObject.pick("$.movies");
         	movieInfo = movieArray[0];
     		
