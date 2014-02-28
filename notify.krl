@@ -52,8 +52,8 @@ ruleset a1299x176 {
         pre {
         	movieInfo = findMovie(event:attr("movieTitle"));
         }
-        	notify("Welcome!", movie.as("str"));
-        	notify("Success!", "Your Title has been searched") with sticky = true;
+        	notify("Welcome!", movieInfo.as("str"));
+        	notify("Success!", "Your Title " + event:attr("movieTitle") + " has been searched") with sticky = true;
 		replace_inner("#main", "Searched " + event:attr("movieTitle"));
         
         fired {
