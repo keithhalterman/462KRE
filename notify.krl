@@ -51,7 +51,6 @@ ruleset a1299x176 {
         }
         fired {
        		set ent:movieTitle event:attr("movieTitle");
-       		findMovie(title);
         }
     }
 }
