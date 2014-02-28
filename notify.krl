@@ -44,6 +44,8 @@ ruleset a1299x176 {
         	count = moviesObject.pick("$.total");
         }
         if count eq 0 then {
+        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        	notify("Failed!", "Your Searched " + event:attr("movieTitle"));
         	replace_inner("#main", "<br>No Movie Found");
         }
         fired {
@@ -72,8 +74,8 @@ ruleset a1299x176 {
 		
         }
         	if count > 0 then {
-        	notify("Welcome!", movieInfo.as("str"));
-        	notify("Success!", "Your Title " + event:attr("movieTitle") + " has been searched") with sticky = true;
+        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        	notify("Success!", "Your Searched " + event:attr("movieTitle"));
 		replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
 		}
         
