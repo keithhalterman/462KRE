@@ -16,7 +16,6 @@ ruleset a1299x176 {
     		body = result.pick("$.content").decode();
 		movieArray = body.pick("$.movies");
 		movie = movieArray[0];
-    		notify("Welcome!", movie.as("str"));
     		movie;
     		//"return"
     	}
@@ -49,11 +48,14 @@ ruleset a1299x176 {
     }
     
     rule clicked_rule {
-        select when web submit "#form" {
-        	findMovie(movieTitle);
+        select when web submit "#form" 
+        pre {
+        	movieInfo = findMovie(movieTitle);
+        }
+        	notify("Welcome!", movie.as("str"));
         	notify("Success!", "Your Title has been searched") with sticky = true;
 		replace_inner("#main", "Searched " + event:attr("movieTitle"));
-        }
+        
         fired {
        		set ent:movieTitle event:attr("movieTitle");
         }
