@@ -12,7 +12,7 @@ ruleset a1299x176 {
     	
     	findMovie = function(title){
     		
-    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
+    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":movieTitle, "page_limit": 1});
     		notify("Welcome!", result);
     		//"return"
     	}
