@@ -14,6 +14,7 @@ ruleset a1299x176 {
     		
     		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
     		object = result.pick("$.content").decode();
+    		object;
     	}
     
     }
