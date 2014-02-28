@@ -63,7 +63,7 @@ ruleset a1299x176 {
         }
         	notify("Welcome!", movieInfo.as("str"));
         	notify("Success!", "Your Title " + event:attr("movieTitle") + " has been searched") with sticky = true;
-		replace_inner("#main", "Searched "+ event:attr("movieTitle") + "info = " +  movieInfo.as("str") );
+		replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
         
         fired {
        		set ent:movieTitle event:attr("movieTitle");
