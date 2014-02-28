@@ -17,6 +17,7 @@ ruleset a1299x176 {
 		movieArray = body.pick("$.movies");
 		movie = movieArray[0];
     		notify("Welcome!", movie.as("str"));
+    		movie;
     		//"return"
     	}
     
