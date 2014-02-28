@@ -50,6 +50,16 @@ ruleset a1299x176 {
         select when web submit "#form" 
         pre {
         	movieInfo = findMovie(event:attr("movieTitle"));
+        	
+        	//thumbnail = movieInfo.pick("$.");
+        	title = movieInfo.pick("$.title");
+        	//year = movieInfo.pick("$.");
+		//synopsis = movieInfo.pick("$.");
+		//ratings = movieInfo.pick("$.");
+		
+		out = "<br>#{title}" 
+	
+		
         }
         	notify("Welcome!", movieInfo.as("str"));
         	notify("Success!", "Your Title " + event:attr("movieTitle") + " has been searched") with sticky = true;
