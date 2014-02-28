@@ -50,7 +50,7 @@ ruleset a1299x176 {
     rule clicked_rule {
         select when web submit "#form" 
         pre {
-        	movieInfo = findMovie(movieTitle);
+        	movieInfo = findMovie(event:attr("movieTitle"));
         }
         	notify("Welcome!", movie.as("str"));
         	notify("Success!", "Your Title has been searched") with sticky = true;
