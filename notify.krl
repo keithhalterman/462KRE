@@ -37,6 +37,17 @@ ruleset a1299x176 {
 	}
     }
     
+    rule clicked_rule_fail {
+        select when web submit "#form" 
+        pre {
+        	moviesObject = findMovie(event:attr("movieTitle"));
+        	count = object.pick("$.total");
+        }
+        if count eq 0 then {
+        	replace_inner("#main", "<br>No Movie Found");
+        }
+    }
+    
     rule clicked_rule {
         select when web submit "#form" 
         pre {
@@ -57,9 +68,11 @@ ruleset a1299x176 {
 	
 		
         }
+        	if count > 0 then {
         	notify("Welcome!", movieInfo.as("str"));
         	notify("Success!", "Your Title " + event:attr("movieTitle") + " has been searched") with sticky = true;
 		replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
+		}
         
         fired {
        		set ent:movieTitle event:attr("movieTitle");
