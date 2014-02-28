@@ -19,13 +19,12 @@ ruleset a1299x176 {
         
         
         if (name eq "1") then {
-            	notify("Goodbye", ent:firstname + " is being cleared") with sticky = true;
+            	notify("Goodbye", ent:movieTitle + " is being cleared") with sticky = true;
         }
         fired {
-            	clear ent:firstname;
-        	clear ent:lastname;
-          	set ent:firstname null;
-          	set ent:lastname null;
+            	clear ent:movieTitle;
+          	set ent:movieTitle null;
+          	
         }
     }
     
@@ -35,8 +34,7 @@ ruleset a1299x176 {
             form = <<
                 <p>Hello!</p> 
                 <form id="form" onsubmit="return false">
-                First name: <input type="text" name="firstname"><br>
-                Last name: <input type="text" name="lastname">
+                Movie Title: <input type="text" name="movieTitle"><br>
                 <input type="submit" value="Submit">
                 </form>
             >>;
@@ -52,18 +50,17 @@ ruleset a1299x176 {
     rule show_name {
     	select when pageview ".*"
     	if not ent:firstname.isnull() then {
-    		replace_inner("#main", "Hello " + ent:firstname + " " +  ent:lastname);
+    		replace_inner("#main", "Movie " + ent:movieTitle)
     	}
     }
     
     rule clicked_rule {
         select when web submit "#form" {
-        	notify("Success!", "Your name has been saved") with sticky = true;
-		replace_inner("#main", "Hello " + event:attr("firstname") + " " +  event:attr("lastname"));
+        	notify("Success!", "Your Title has been searched") with sticky = true;
+		replace_inner("#main", "Hello " + event:attr("movieTitle"));
         }
         fired {
-       		set ent:firstname event:attr("firstname");
-		set ent:lastname event:attr("lastname");
+       		set ent:movieTitle event:attr("movieTitle");
         }
     }
 }
