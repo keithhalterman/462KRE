@@ -12,7 +12,7 @@ ruleset a1299x176 {
     	
     	findMovie = function(title){
     		
-    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":movieTitle, "page_limit": 1});
+    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
     		notify("Welcome!", result);
     		//"return"
     	}
@@ -46,7 +46,7 @@ ruleset a1299x176 {
     
     rule clicked_rule {
         select when web submit "#form" {
-        	findMovie(title);
+        	findMovie(movieTitle);
         	notify("Success!", "Your Title has been searched") with sticky = true;
 		replace_inner("#main", "Searched " + event:attr("movieTitle"));
         }
