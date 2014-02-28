@@ -51,13 +51,13 @@ ruleset a1299x176 {
         pre {
         	movieInfo = findMovie(event:attr("movieTitle"));
         	
-        	//thumbnail = movieInfo.pick("$.");
+        	thumbnail = movieInfo.pick("$.posters.thumnail");
         	title = movieInfo.pick("$.title");
         	//year = movieInfo.pick("$.");
 		//synopsis = movieInfo.pick("$.");
 		//ratings = movieInfo.pick("$.");
 		
-		out = "<br>#{title}" 
+		out = "<img src=#{thumbnail}> <br>#{title}" 
 	
 		
         }
