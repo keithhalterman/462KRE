@@ -48,7 +48,7 @@ ruleset a1299x176 {
         	notify("Failed!", "Your Searched " + event:attr("movieTitle"));
         	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
         
-        	replace_inner("#main", "<br>No Movie Found");
+        	replace_inner("#main", "<br>No Movie Found<br><br><br>");
         }
         fired {
 	       last
