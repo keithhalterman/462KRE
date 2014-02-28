@@ -31,7 +31,7 @@ ruleset a1299x176 {
         } 
         {
        
-        notify("Welcome!", "Please enter a movie title") with sticky = true;
+        notify("Welcome!", "Please enter a movie title");
 	replace_inner('#footer', form);
 	watch("#form", "submit");
 	}
@@ -44,8 +44,10 @@ ruleset a1299x176 {
         	count = moviesObject.pick("$.total");
         }
         if count eq 0 then {
-        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        
         	notify("Failed!", "Your Searched " + event:attr("movieTitle"));
+        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        
         	replace_inner("#main", "<br>No Movie Found");
         }
         fired {
@@ -74,9 +76,10 @@ ruleset a1299x176 {
 		
         }
         	if count > 0 then {
-        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
-        	notify("Success!", "Your Searched " + event:attr("movieTitle"));
-		replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
+        		notify("Success!", "Your Searched " + event:attr("movieTitle"));
+        		notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        
+			replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
 		}
         
         fired {
