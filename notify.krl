@@ -54,7 +54,7 @@ ruleset a1299x176 {
         	thumbnail = movieInfo.pick("$.posters").pick("$.thumbnail");
         	title = movieInfo.pick("$.title");
         	year = movieInfo.pick("$.year");
-		synopsis = movieInfo.pick("$.");
+		//synopsis = movieInfo.pick("$.");
 		ratings = movieInfo.pick("$.ratings").pick($.critics_score);
 		ratings2 = movieInfo.pick("$.ratings").pick($.critics_rating);
 		
