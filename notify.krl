@@ -46,13 +46,12 @@ ruleset a1299x176 {
     
     rule clicked_rule {
         select when web submit "#form" {
-	//	findMovie(title);
-        
         	notify("Success!", "Your Title has been searched") with sticky = true;
 		replace_inner("#main", "Searched " + event:attr("movieTitle"));
         }
         fired {
        		set ent:movieTitle event:attr("movieTitle");
+       		findMovie(title);
         }
     }
 }
