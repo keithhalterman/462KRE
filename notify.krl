@@ -54,11 +54,11 @@ ruleset a1299x176 {
         	thumbnail = movieInfo.pick("$.posters").pick("$.thumbnail");
         	title = movieInfo.pick("$.title");
         	year = movieInfo.pick("$.year");
-		//synopsis = movieInfo.pick("$.");
+		synopsis = movieInfo.pick("$.synopsis");
 		ratings = movieInfo.pick("$.ratings").pick("$.critics_score");
 		ratings2 = movieInfo.pick("$.ratings").pick("$.critics_rating");
 		
-		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} " 
+		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} " 
 	
 		
         }
