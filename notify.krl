@@ -27,24 +27,22 @@ ruleset a1299x176 {
           	
         }
     }
-    
     rule show_form {
-        select when pageview ".*" 
+        select when pageview ".*"
         pre {
             form = <<
-                <p>Hello!</p> 
                 <form id="form" onsubmit="return false">
                 Movie Title: <input type="text" name="movieTitle"><br>
                 <input type="submit" value="Submit">
                 </form>
             >>;
         } 
-        
+        {
        
-        notify("Welcome!", "Please enter your name") with sticky = true;
-        append("#main", form);
-        watch("#form", "submit");
-        
+        notify("Welcome!", "Please enter a movie title") with sticky = true;
+	replace_inner('#footer', form);
+	watch("#form", "submit");
+	}
     }
     
     rule show_name {
