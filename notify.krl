@@ -71,7 +71,7 @@ ruleset a1299x176 {
 		ratings = movieInfo.pick("$.ratings").pick("$.critics_score");
 		ratings2 = movieInfo.pick("$.ratings").pick("$.critics_rating");
 		
-		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} <br> " 
+		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} <br><br><br> " 
 	
 		
         }
