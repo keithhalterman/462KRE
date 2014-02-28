@@ -71,7 +71,7 @@ ruleset a1299x176 {
 		ratings = movieInfo.pick("$.ratings").pick("$.critics_score");
 		ratings2 = movieInfo.pick("$.ratings").pick("$.critics_rating");
 		
-		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} " 
+		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} <br> " 
 	
 		
         }
@@ -79,7 +79,7 @@ ruleset a1299x176 {
         		notify("Success!", "Your Searched " + event:attr("movieTitle"));
         		notify("HTTP Response", movieInfo.as("str")) with sticky = true;
         
-			replace_inner("#main", out + "<br><br>info = " +  movieInfo.as("str") );
+			replace_inner("#main", out);
 		}
         
         fired {
