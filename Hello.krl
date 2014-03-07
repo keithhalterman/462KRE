@@ -21,6 +21,6 @@ ruleset HelloWorldApp {
         <h5>Hello, world Test!</h5>
       >>;
       }
-    CloudRain:createLoadPanel("Hello World Test!", {}, my_html);
+    CloudRain:createLoadPanel("Hello World Test2!", {}, my_html);
   }
 }
