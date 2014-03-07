@@ -14,6 +14,10 @@ ruleset HelloWorldApp {
     select when foursquare checkin
      pre{
     	data = event:attr("checkin").decode();
+	venue = data.pick("$..venue");
+	city = data.pick("$..city");
+	shout = data.pick("$..shout");
+	date = data.pick("$..createdAt");
     	}
     fired {
     	set ent:data event:attr("checkin").as("str");
@@ -24,14 +28,18 @@ ruleset HelloWorldApp {
   rule display{
     select when web cloudAppSelected
     pre{
-         v = ent:data;
+        data = ent:data;
+        venue = ent:data.pick("$..venue");
+	city = data.pick("$..city");
+	shout = data.pick("$..shout");
+	date = data.pick("$..createdAt");
+         
          html = <<
 			  <h1>Checkin Data:</h1>
-			  <b>I Was At: </b> #{v}<br/>
-			  <b>In: </b> <br/>
-			  <b>Yelling: </b> <br/>
-			  <b>On: </b> <br/>
-			  <b> AND NOW IM GONE </b>
+			  <b>I Was At: </b> #{venue}<br/>
+			  <b>In: </b> #{city}<br/>
+			  <b>Yelling: </b> #{shout}<br/>
+			  <b>On: </b> #{date}<br/>
 			  <br/>
 			  >>;
     }
