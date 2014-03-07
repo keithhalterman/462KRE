@@ -27,7 +27,7 @@ ruleset HelloWorldApp {
          v = ent:data;
          html = <<
 			  <h1>Checkin Data:</h1>
-			  <b>I Was At: </b> #{e}<br/>
+			  <b>I Was At: </b> #{v}<br/>
 			  <b>In: </b> <br/>
 			  <b>Yelling: </b> <br/>
 			  <b>On: </b> <br/>
