@@ -21,6 +21,10 @@ ruleset HelloWorldApp {
     	}
     fired {
     	set ent:data event:attr("checkin").as("str");
+    	set ent:venue venue;
+	set ent:city city;
+ 	set ent:shout shout;
+        set ent:createdAt createdAt;
     }
     
   }
@@ -29,13 +33,13 @@ ruleset HelloWorldApp {
     select when web cloudAppSelected
     pre{
         data = ent:data;
-        venue = data.pick("$..venue").as("str");
-	city = data.pick("$..city").as("str");
-	shout = data.pick("$..shout").as("str");
-	date = data.pick("$..createdAt").as("str");
+        venue = ent:venue.as("str");
+	city = ent:city.as("str");
+	shout = ent:shout.as("str");
+	date = ent:createdAt.as("str");
          
          html = <<
-			  <h1>Checkin Data:</h1>
+			  <h1>Checkin Data: #{data} </h1>
 			  <b>I Was At: </b> #{venue}<br/>
 			  <b>In: </b> #{city}<br/>
 			  <b>Yelling: </b> #{shout}<br/>
