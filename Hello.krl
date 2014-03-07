@@ -13,26 +13,24 @@ ruleset HelloWorldApp {
   }
   global {
   }
-  rule HelloWorld is active {
-    select when web cloudAppSelected
-     pre {
-       my_html = <<
-         <h5>Hello, world!</h5>
-       >>;
-     }
-     {
-       SquareTag:inject_styling();
-       CloudRain:createLoadPanel("Hello World!", {}, my_html);
-     }
-   }
+
   
   rule process_fs_checkin is active {
     select when foursquare checkin
-     pre {
-      my_html = <<
-        <h5>Hello, world Test!</h5>
-      >>;
-      }
-    CloudRain:createLoadPanel("Hello World Test2!", {}, my_html);
+     pre{
+    	data = event:attr("checkin").decode();
+    	}
+    fired {
+    	set ent:data event:attr("checkin").as("str");
+    }
+    
   }
+   
+  rule display is active {
+    select when web cloudAppSelected
+    
+       CloudRain:createLoadPanel("Hello World! :" + data, {}, my_html);
+       
+    }
+   
 }
