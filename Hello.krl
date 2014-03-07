@@ -29,10 +29,10 @@ ruleset HelloWorldApp {
     select when web cloudAppSelected
     pre{
         data = ent:data;
-        venue = ent:data.pick("$..venue");
-	city = data.pick("$..city");
-	shout = data.pick("$..shout");
-	date = data.pick("$..createdAt");
+        venue = data.pick("$..venue").as("str");
+	city = data.pick("$..city").as("str");
+	shout = data.pick("$..shout").as("str");
+	date = data.pick("$..createdAt").as("str");
          
          html = <<
 			  <h1>Checkin Data:</h1>
