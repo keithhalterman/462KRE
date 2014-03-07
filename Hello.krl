@@ -18,9 +18,9 @@ ruleset HelloWorldApp {
     select when foursquare checkin
      pre {
       my_html = <<
-        <h5>Hello, world!</h5>
+        <h5>Hello, world Test!</h5>
       >>;
       }
-    CloudRain:createLoadPanel("Hello World!", {}, my_html);
+    CloudRain:createLoadPanel("Hello World Test!", {}, my_html);
   }
 }
