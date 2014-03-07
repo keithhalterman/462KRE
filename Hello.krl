@@ -33,7 +33,7 @@ ruleset HelloWorldApp {
     select when web cloudAppSelected
     pre{
         data = ent:data;
-        venue = ent:venue.as("str");
+        venue = ent:venue.pick("$.name").as("str");
 	city = ent:city.as("str");
 	shout = ent:shout.as("str");
 	date = ent:createdAt.as("str");
