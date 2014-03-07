@@ -25,4 +25,9 @@ ruleset HelloWorldApp {
       CloudRain:createLoadPanel("Hello World!", {}, my_html);
     }
   }
+  
+  rule process_fs_checkin is active {
+    select when foursquare checkin
+    notify("Success!", "Yay");
+  }
 }
