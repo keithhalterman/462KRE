@@ -15,7 +15,7 @@ ruleset HelloWorldApp {
   }
 
   
-  rule process_fs_checkin is active {
+  rule process_fs_checkin{
     select when foursquare checkin
      pre{
     	data = event:attr("checkin").decode();
@@ -26,10 +26,21 @@ ruleset HelloWorldApp {
     
   }
    
-  rule display is active {
+  rule display{
     select when web cloudAppSelected
-    
-       CloudRain:createLoadPanel("Hello World! :" + data, {}, my_html);
+    pre{
+         v = ent:data
+         html = <<
+			  <h1>Checkin Data:</h1>
+			  <b>I Was At: </b> #{e}<br/>
+			  <b>In: </b> #{c}<br/>
+			  <b>Yelling: </b> #{s}<br/>
+			  <b>On: </b> #{ca}<br/>
+			  <b> AND NOW IM GONE </b>
+			  <br/>
+			  >>;
+    }
+       CloudRain:createLoadPanel("Hello World!", { },  html);
        
     }
    
