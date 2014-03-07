@@ -24,7 +24,7 @@ ruleset HelloWorldApp {
     	set ent:venue venue;
 	set ent:city city;
  	set ent:shout shout;
-        set ent:createdAt createdAt;
+        set ent:date date;
     }
     
   }
@@ -36,7 +36,7 @@ ruleset HelloWorldApp {
         venue = ent:venue.pick("$.name").as("str");
 	city = ent:city.as("str");
 	shout = ent:shout.as("str");
-	date = ent:createdAt.as("str");
+	date = ent:date.as("str");
          
          html = <<
 			  <h1>Checkin Data: </h1>
