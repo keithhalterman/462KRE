@@ -44,6 +44,7 @@ ruleset HelloWorldApp {
 			  <b>In: </b> #{city}<br/>
 			  <b>Yelling: </b> #{shout}<br/>
 			  <b>On: </b> #{date}<br/>
+			  <br>
 			  <b>Data: </b> #{data} <br/>
 			  <br/>
 			  >>;
