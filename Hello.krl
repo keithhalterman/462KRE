@@ -1,6 +1,6 @@
 ruleset HelloWorldApp {
   meta {
-    name "Hello World"
+    name "FourSquare Checkin"
     description <<
       Hello World
     >>
@@ -9,12 +9,7 @@ ruleset HelloWorldApp {
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
   }
-  dispatch {
-  }
-  global {
-  }
 
-  
   rule process_fs_checkin{
     select when foursquare checkin
      pre{
@@ -29,13 +24,13 @@ ruleset HelloWorldApp {
   rule display{
     select when web cloudAppSelected
     pre{
-         v = ent:data
+         v = ent:data;
          html = <<
 			  <h1>Checkin Data:</h1>
 			  <b>I Was At: </b> #{e}<br/>
-			  <b>In: </b> #{c}<br/>
-			  <b>Yelling: </b> #{s}<br/>
-			  <b>On: </b> #{ca}<br/>
+			  <b>In: </b> <br/>
+			  <b>Yelling: </b> <br/>
+			  <b>On: </b> <br/>
 			  <b> AND NOW IM GONE </b>
 			  <br/>
 			  >>;
