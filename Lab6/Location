@@ -26,10 +26,22 @@ ruleset Location {   //b505690x1.dev
 
 	}
 	
-	rule showData{
-    select when cloudAppSelected
-	  pre
+	rule test is active {
+	select when pageview ".*" 
+		pre {
+			map = {};
+			}
 		{
+	  	notify(ent:locationData.as("str") , "Notify") with sticky = true;
+		}
+		always {
+			set app:locationData "HELP ME!";
+		}
+	}
+	
+	rule showData{
+    		select when cloudAppSelected
+		pre {
 			checkin = getLocation("fs_checkin");
 
 			venue = checkin.pick("$.venue").encode().as("str");
@@ -50,8 +62,7 @@ ruleset Location {   //b505690x1.dev
 			append("#main", html_output);
 		}
   
-  
-   }
+   	}
 	
 	rule add_location_item{
     select when pds new_location_data
