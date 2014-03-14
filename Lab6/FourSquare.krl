@@ -9,7 +9,7 @@ ruleset FourSquare {   //b505690x1.dev
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
     
-    use module b505690x3 alias Location
+    use module b505690x2 alias Location
     use module b505690x4 alias LocationView
 
   }
