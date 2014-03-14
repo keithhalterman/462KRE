@@ -1,39 +1,24 @@
-ruleset Location {   //b505690x1.dev
-  meta {
-    name "Location"
-    description <<
-      Location
-    >>
-    author "Ketih Halterman"
-    logging off
-    use module a169x701 alias CloudRain
-    use module a41x186  alias SquareTag
+ruleset a1299x176 {
+    meta {
+        name "Lab 2"
+        author "Keith Halterman"
+        logging off
+    }
+    dispatch {
+    }
+    global {
+    	
+    	key = "smgxpc6tvwsaufdtvtgr85ur";
+    	
+    	findMovie = function(title){
+    		
+    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
+    		object = result.pick("$.content").decode();
+    		object;
+    	}
     
-//    provides getLocation, getTest
-
-  }
-  
- dispatch {
- }
-
-//global {
-//
-//	getLocation = function(key){
-//    		ent:locationData{key} || {};
-//    		};
-//
-//
-//	getTest = "Test Succeeded!";
-//
-//}
-
-rule tester {
-	select when pageview ".*" 
-
-  	notify("???", "Notify") with sticky = true;
-	
-}
-
+    }
+    
     rule show_form {
         select when pageview ".*"
         pre {
@@ -51,46 +36,54 @@ rule tester {
 	watch("#form", "submit");
 	}
     }
+    
+    rule clicked_rule_fail {
+        select when web submit "#form" 
+        pre {
+        	moviesObject = findMovie(event:attr("movieTitle"));
+        	count = moviesObject.pick("$.total");
+        }
+        if count eq 0 then {
+        
+        	notify("Failed!", "Your Searched " + event:attr("movieTitle"));
+        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        
+        	replace_inner("#main", "<br>No Movie Found<br><br><br>");
+        }
+        fired {
+	       last
+        }
+    }
+    
+    rule clicked_rule {
+        select when web submit "#form" 
+        pre {
+        	moviesObject = findMovie(event:attr("movieTitle"));
+        	count = moviesObject.pick("$.total");
+        	movieArray = moviesObject.pick("$.movies");
+        	movieInfo = movieArray[0];
+    		
+        	
+        	thumbnail = movieInfo.pick("$.posters").pick("$.thumbnail");
+        	title = movieInfo.pick("$.title");
+        	year = movieInfo.pick("$.year");
+		synopsis = movieInfo.pick("$.synopsis");
+		ratings = movieInfo.pick("$.ratings").pick("$.critics_score");
+		ratings2 = movieInfo.pick("$.ratings").pick("$.critics_rating");
 
-//rule showData{
-//    	select when cloudAppSelected
-//	pre {
-//		checkin = getLocation("fs_checkin");
-//
-//		venue = checkin.pick("$.venue").encode().as("str");
-//		city = checkin.pick("$.city").encode(); 
-//		shout = checkin.pick("$.shout").encode();
-//		date = checkin.pick("$.date").encode();
-//		html_output = <<
-//				<p>Venue: #{venue} </p>
-//				<p>City: #{city} <br /></p>
-//				<p>Shout: #{shout} <br /></p>
-//				<p>Date: #{date} <br /></p>
-//				>>;
-//		checkin_header = << <div id="main">Checkin: </div><br />
-//					 <div id="checkinInfo"/> >>;
-//	}
-//	{
-//		CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
-//		append("#main", html_output);
-//	}
-//
-//   }
+		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} <br><br><br> " 
 
-//rule add_location_item{
-//    	select when pds new_location_data
-//	    pre {
-//	        k = event:attr("key");
-//	        v = event:attr("value");
-//	        map = {};
-//	        map = map.put([k], v);
-//	    }
-//	    	{
-//	    	send_directive('Set_Directive:Add_Location Works') with key = k and value = v;
-//	    	}
-//	    always {
-//	        set ent:locationData map; 
-//	    }
-// }
 
+        }
+        	if count > 0 then {
+        		notify("Success!", "Your Searched " + event:attr("movieTitle"));
+        		notify("HTTP Response", movieInfo.as("str")) with sticky = true;
+        
+			replace_inner("#main", out);
+		}
+        
+        fired {
+       		set ent:movieTitle event:attr("movieTitle");
+        }
+    }
 }
