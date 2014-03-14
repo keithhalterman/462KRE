@@ -9,11 +9,31 @@ ruleset Location {
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
+    
+    provides getLocation
 
   }
+  dispatch {
+    }
+  global {
+  
+      getLocation = function(key){
+          ent:map.pick(key);
+      }
+      
+    }
   
   rule add_location_item{
-    notify("Test", Testing)
+    select when pds:new_location_data
+    pre{
+        key = event:attr("key");
+        value = event:attr("value");
+        map = {};
+        map.put([key] ,value);
+    	}
+    always {
+        set ent:locationData map; 
+    }
   }
 
 }
