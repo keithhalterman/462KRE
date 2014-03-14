@@ -8,6 +8,8 @@ ruleset HelloWorldApp {
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
+    use module b505204x3 alias location
+    
   }
 
   rule process_fs_checkin{
