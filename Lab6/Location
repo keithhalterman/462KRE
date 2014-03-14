@@ -26,17 +26,17 @@ ruleset Location {   //b505690x1.dev
 //
 //}
 
-rule tester is active {
+rule tester {
 	select when pageview ".*" 
 	pre {
-		map = {};
+	//	map = {};
 		}
 	{
   	//notify(ent:locationData.as("str") , "Notify") with sticky = true;
   	notify("???", "Notify") with sticky = true;
 	}
 	always {
-		set app:locationData "HELP ME!";
+	//	set app:locationData "HELP ME!";
 	}
 }
 
