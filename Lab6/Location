@@ -30,12 +30,20 @@ global {
 rule tester {
 	select when pageview ".*" 
 
-  	notify("???", "Notify") with sticky = true;
+	pre {
+		map = {};
+	}
+	{
+  	notify(ent:locationData.as("str"), "Notify") with sticky = true;
+  	}
+  	always {
+  		set app:locationData "Work please!";
+  	}
 
 }
 
 
-rule showData{
+rule showData {
     	select when cloudAppSelected
 	pre {
 		checkin = getLocation("fs_checkin");
