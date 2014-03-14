@@ -26,7 +26,7 @@ ruleset Location {   //b505690x1.dev
 //
 //}
 
-rule test is active {
+rule tester is active {
 	select when pageview ".*" 
 	pre {
 		map = {};
