@@ -59,7 +59,7 @@ ruleset Location {   //b505690x1.dev
         k = event:attr("key");
         v = event:attr("value");
         map = {};
-        map.put([k], v);
+        map = map.put([k], v);
     	}
     	{
     	send_directive('Set_Directive:Add_Location Works') with key = k and value = v;
