@@ -48,10 +48,10 @@ rule showData {
 	pre {
 		checkin = getLocation("fs_checkin");
 
-		venue = checkin.pick("$..venue").encode().as("str");
-		city = checkin.pick("$..city").encode(); 
-		shout = checkin.pick("$..shout").encode();
-		date = checkin.pick("$..date").encode();
+		venue = checkin.pick("$.venue").encode().as("str");
+		city = checkin.pick("$.city").encode(); 
+		shout = checkin.pick("$.shout").encode();
+		date = checkin.pick("$.date").encode();
 		html_output = <<
 				<p>Venue: #{venue} </p>
 				<p>City: #{city} <br /></p>
@@ -62,7 +62,7 @@ rule showData {
 					 <div id="checkinInfo"/> >>;
 	}
 	{
-		CloudRain:createLoadPanel("Foursquare Checkin info",{},checkin_header);
+		CloudRain:createLoadPanel("Foursquare Checkin info",{}, html_output);
 		append("#main", html_output);
 	}
 
