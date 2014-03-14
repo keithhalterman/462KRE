@@ -1,4 +1,4 @@
-ruleset HelloWorldApp {   //b505690x1.dev
+ruleset FourSquare {   //b505690x1.dev
   meta {
     name "FourSquare Checkin"
     description <<
@@ -8,7 +8,7 @@ ruleset HelloWorldApp {   //b505690x1.dev
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
-    use module b505204x3 alias location
+    //use module b505204x3 alias location
 
   }
 
