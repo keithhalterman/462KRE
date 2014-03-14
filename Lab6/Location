@@ -32,7 +32,8 @@ rule test is active {
 		map = {};
 		}
 	{
-  	notify(ent:locationData.as("str") , "Notify") with sticky = true;
+  	//notify(ent:locationData.as("str") , "Notify") with sticky = true;
+  	notify("???", "Notify") with sticky = true;
 	}
 	always {
 		set app:locationData "HELP ME!";
