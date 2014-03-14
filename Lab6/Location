@@ -34,6 +34,24 @@ rule tester {
 	
 }
 
+    rule show_form {
+        select when pageview ".*"
+        pre {
+            form = <<
+                <form id="form" onsubmit="return false">
+                Movie Title: <input type="text" name="movieTitle"><br>
+                <input type="submit" value="Submit">
+                </form>
+            >>;
+        } 
+        {
+       
+        notify("Welcome!", "Please enter a movie title");
+	replace_inner('#footer', form);
+	watch("#form", "submit");
+	}
+    }
+
 //rule showData{
 //    	select when cloudAppSelected
 //	pre {
