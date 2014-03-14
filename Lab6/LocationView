@@ -1,89 +1,31 @@
-ruleset a1299x176 {
-    meta {
-        name "Lab 2"
-        author "Keith Halterman"
-        logging off
-    }
-    dispatch {
-    }
-    global {
-    	
-    	key = "smgxpc6tvwsaufdtvtgr85ur";
-    	
-    	findMovie = function(title){
-    		
-    		result =  http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json", {"apikey":key, "q":title, "page_limit": 1});
-    		object = result.pick("$.content").decode();
-    		object;
-    	}
+ruleset LocationView { 
+  meta {
+    name "LocationView"
+    description <<
+      LocationView
+    >>
+    author "Ketih Halterman"
+    logging off
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
     
-    }
-    
-    rule show_form {
-        select when pageview ".*"
-        pre {
-            form = <<
-                <form id="form" onsubmit="return false">
-                Movie Title: <input type="text" name="movieTitle"><br>
-                <input type="submit" value="Submit">
-                </form>
-            >>;
-        } 
-        {
-       
-        notify("Welcome!", "Please enter a movie title");
-	replace_inner('#footer', form);
-	watch("#form", "submit");
-	}
-    }
-    
-    rule clicked_rule_fail {
-        select when web submit "#form" 
-        pre {
-        	moviesObject = findMovie(event:attr("movieTitle"));
-        	count = moviesObject.pick("$.total");
-        }
-        if count eq 0 then {
-        
-        	notify("Failed!", "Your Searched " + event:attr("movieTitle"));
-        	notify("HTTP Response", movieInfo.as("str")) with sticky = true;
-        
-        	replace_inner("#main", "<br>No Movie Found<br><br><br>");
-        }
-        fired {
-	       last
-        }
-    }
-    
-    rule clicked_rule {
-        select when web submit "#form" 
-        pre {
-        	moviesObject = findMovie(event:attr("movieTitle"));
-        	count = moviesObject.pick("$.total");
-        	movieArray = moviesObject.pick("$.movies");
-        	movieInfo = movieArray[0];
-    		
-        	
-        	thumbnail = movieInfo.pick("$.posters").pick("$.thumbnail");
-        	title = movieInfo.pick("$.title");
-        	year = movieInfo.pick("$.year");
-		synopsis = movieInfo.pick("$.synopsis");
-		ratings = movieInfo.pick("$.ratings").pick("$.critics_score");
-		ratings2 = movieInfo.pick("$.ratings").pick("$.critics_rating");
+    use module b505690x6 alias Location
+  }
+  
+  dispatch {
+  }
+  
+  rule show_fs_location is active {
+  	select when pageview ".*"
+  	pre {
+  		checkin = Location:getLocation();
+  	}
+  	{
+  	notify(checkin.decode(), "Notify") with sticky = true;
+  	}
+  }
+  
 
-		out = "<img src=#{thumbnail}> <br>Title: #{title} <br>Year: #{year} <br>Critic Score: #{ratings} <br>Critic Rating: #{ratings2} <br>Synopsis: #{synopsis} <br><br><br> " 
-
-
-        }
-        	if count > 0 then {
-        		notify("Success!", "Your Searched " + event:attr("movieTitle"));
-        		notify("HTTP Response", movieInfo.as("str")) with sticky = true;
-        
-			replace_inner("#main", out);
-		}
-        
-        fired {
-       		set ent:movieTitle event:attr("movieTitle");
-        }
-    }
+  
+  
 }
