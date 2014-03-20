@@ -33,7 +33,7 @@ ruleset locationProcessor{
     }
   }
   
-  rule new_cur-loc{
+  rule new_cur_loc{
     select when location new_cur_loc
     pre {
       lat = event:attr("lat");
@@ -59,23 +59,40 @@ ruleset locationProcessor{
     
   }
   
-    rule process_fs_checkin{
-    select when foursquare checkin
-    
-    pre{
-    	data = "data";
+    rule display {
+      select when pageview ".*" setting ()
+      pre {
+        last_checkin = Location:getLocation("fs_checkin");
+        lat = last_checkin.pick("$.lat");
+        lng = last_checkin.pick("$.lng");
+      }
+      {
+        notify("latitude",lat) with sticky = true;
+        notify("lng",lng) with sticky = true;
+        notify("distance",app:dist + " miles") with sticky = true;
+        notify("nearby lat", app:lat) with sticky = true;
+        notify("nearby lng", app:lng) with sticky = true;
+        notify("dist now", distance_calc(lat,lng,app:lat,app:lng)) with sticky = true;
+      }
     }
-    {
-     	
-      send_directive("say") with
-          something = "Hello World"
-          
-     	notify("Hello", "world");
-    }
-    fired{
-  	  raise pds event location_nearby 
-  	    with key = "location"
-  	    and value = "Current Location Processor";
-    }
-  }
+  
+//    rule process_fs_checkin{
+//    select when foursquare checkin
+//    
+//    pre{
+//    	data = "data";
+//    }
+//    {
+//     	
+//      send_directive("say") with
+//          something = "Hello World"
+//          
+//     	notify("Hello", "world");
+//    }
+//    fired{
+//  	  raise pds event location_nearby 
+//  	    with key = "location"
+//  	    and value = "Current Location Processor";
+//    }
+//  }
 }
