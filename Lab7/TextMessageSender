@@ -1,33 +1,32 @@
 //b505690x9
-ruleset TextMessageSender{ 
+//ruleset TextMessageSender{ 
+//  meta {
+//    logging off
+//    use module a169x701 alias CloudRain
+//    use module a41x186  alias SquareTag
+//    
+//    key twilio {
+//      "account_sid" : "AC3d897a777377f0b0ad95aaf4d02f0618",
+//      "auth_token"  : "7a27308a518d183eb0b49b1979697eeb"
+//    }
+    
+//b505218x10
+//twilio account number: AC5b745cf6b2fd4c0036541da07611921e
+//twilio auth token: 6eead8d6bc0cd85f7fcd91220566e1ff
+
+ruleset b505218x10 {
   meta {
-    logging off
-    use module a169x701 alias CloudRain
-    use module a41x186  alias SquareTag
-    
-    key twilio {
-      "account_sid" : "AC3d897a777377f0b0ad95aaf4d02f0618",
-      "auth_token"  : "7a27308a518d183eb0b49b1979697eeb"
+         
+        key twilio {"account_sid" : "AC5b745cf6b2fd4c0036541da07611921e",
+                    "auth_token" : "6eead8d6bc0cd85f7fcd91220566e1ff"
+        }
+         
+        use module a8x115 alias twilio with twiliokeys = keys:twilio()
+        
+  } 
+    rule sms {
+      select when pageview ".*"
+      twilio:send_sms("18015560842", "13852357284", "test message");
     }
-    
-    use module a8x115 alias twilio with twiliokeys = keys:twilio()
-    
-    //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
-  }
-  
-//  rule nearby {
-//    select when explicit location_nearby
-//  }
-  
-//  rule far {
-//    select when explicit location_far
-//  }
- 
-  rule sms {
-    select when pageview ".*"
-    {
-    notify("It works", "Yay");
-    twilio:send_sms("18015560842", "16785155796" , "I'm working! Whoot whoot!");
-    }
-  }
+   
 }
