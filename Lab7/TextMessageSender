@@ -29,6 +29,7 @@ ruleset TextMessageSender{
     notify("test", "this is a test to make this work");
     twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
     twilio:send_sms("19165348410", "16785155796" , "I'm working! Whoot whoot!");
+    notify("test", "this is another test");
     }
   }
     
