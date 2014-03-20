@@ -1,10 +1,10 @@
 //b505690x9
 
-ruleset textMessageSender{ 
+ruleset TextMessageSender{ 
   meta {
-    name "textMessageSender"
+    name "TextMessageSender"
     description <<
-      textMessageSender
+      TextMessageSender
     >>
     author "Ketih Halterman"
     logging off
