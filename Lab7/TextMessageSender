@@ -1,6 +1,6 @@
 //b505690x9
 
-ruleset nearbyListener{ 
+ruleset TextMessageSender{ 
   meta {
     logging off
     use module a169x701 alias CloudRain
