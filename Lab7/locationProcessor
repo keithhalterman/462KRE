@@ -7,7 +7,7 @@ ruleset locationProcessor{
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
-    use module b505690x6 alias location_data
+    use module b505690x6 alias location
     
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
   }
@@ -25,7 +25,7 @@ ruleset locationProcessor{
     }
 
     distance_from_current = function(lat,long){
-      last_checkin = Location:getLocation("fs_checkin");
+      last_checkin = location:getLocation("fs_checkin");
       latb = last_checkin.pick("$.lat");
       longb = last_checkin.pick("$.lng");
       d = distance_calc(lat, long, latb, longb);
@@ -62,7 +62,7 @@ ruleset locationProcessor{
     rule display {
       select when pageview ".*" setting ()
       pre {
-        last_checkin = Location:getLocation("fs_checkin");
+        last_checkin = location:getLocation("fs_checkin");
         lat = last_checkin.pick("$.lat");
         lng = last_checkin.pick("$.lng");
       }
