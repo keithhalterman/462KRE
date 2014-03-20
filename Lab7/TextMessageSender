@@ -1,10 +1,10 @@
 //b505690x8
 
-ruleset nearbyListener{ 
+ruleset textMessageSender{ 
   meta {
-    name "nearbyListener"
+    name "textMessageSender"
     description <<
-      nearbyListener
+      textMessageSender
     >>
     author "Ketih Halterman"
     logging off
