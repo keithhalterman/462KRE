@@ -1,4 +1,4 @@
-//b505690x9
+//b505690x14
 ruleset TextMessageSender{ 
   meta {
     logging off
