@@ -15,13 +15,29 @@ ruleset TextMessageSender{
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
   }
   
-//  rule nearby {
-//    select when explicit location_nearby
-//  }
+  rule near {
+    select when explicit location_near
+    pre {
+      distance = event:attr("distance");
+      message = "Event Fired from " + distance.as("str") + " miles away.";
+    }
+    {
+      send_directive(message) with dist = distance;
+      twilio:send_sms("19165348410", "16785155796" , message);
+    }
+    
+  }
   
-//  rule far {
-//    select when explicit location_far
-//  }
+  rule far {
+    select when explicit location_far
+    pre {
+      distance = event:attr("distance");
+      message = "Very Far away: Event Fired from " + distance.as("str") + " miles away.";
+    }
+    {
+      send_directive(message) with dist = distance;
+    }
+  }
  
   rule sms {
     select when pageview ".*"
