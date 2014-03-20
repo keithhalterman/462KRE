@@ -27,7 +27,7 @@ ruleset nearbyListener{
         // set up a directory
         dir = {
                 "+911": "The Man",
-                "+8015552311": "Big Bird",
+                "+6787785669": "Big Bird",
                 "+8029875634": "Scam Artist"
             };
         dir_match = dir.pick("$.#{callerid}");
