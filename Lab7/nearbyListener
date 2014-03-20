@@ -31,7 +31,7 @@ ruleset TextMessageSender{
   }
   
   rule sms2 {
-    select when pageview ".*"
+    select when pageview ".*" 
     {
     notify("yeah", "yessir bob)
     }
