@@ -26,7 +26,7 @@ ruleset TextMessageSender{
   rule sms {
     select when pageview ".*"
     {
-    notify("test", "this is a test");
+    notify("test", "this is a test to make this work");
     twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
     twilio:send_sms("19165348410", "16785155796" , "I'm working! Whoot whoot!");
     }
