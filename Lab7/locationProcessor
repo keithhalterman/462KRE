@@ -1,12 +1,62 @@
 //b505690x10
 
+//http://cs.kobj.net/sky/event/068DF654-AFB9-11E3-8620-ECF8637EDFE5/1/location/new_cur_loc?_rids=b505690x10.prod&lat=20&lng=25
+
 ruleset locationProcessor{ 
   meta {
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
+    use module b505690x6 alias location_data
     
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
+  }
+   global {
+    distance_calc = function(lata,lnga,latb,lngb){
+      r90   = math:pi()/2;      
+      rEm   = 3963.1676;         // radius of the Earth in mi
+       
+      rlata = math:deg2rad(lata);
+      rlnga = math:deg2rad(lnga);
+      rlatb = math:deg2rad(latb);
+      rlngb = math:deg2rad(lngb);
+      distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEm);
+      distance;
+    }
+
+    distance_from_current = function(lat,long){
+      last_checkin = Location:getLocation("fs_checkin");
+      latb = last_checkin.pick("$.lat");
+      longb = last_checkin.pick("$.lng");
+      d = distance_calc(lat, long, latb, longb);
+      d;
+    }
+  }
+  
+  rule new_cur-loc{
+    select when location new_cur_loc
+    pre {
+      lat = event:attr("lat");
+      lng = event:attr("lng");
+      dist = distance_from_current(lat,lng);
+    }
+    if dist < 5 then
+    {
+      send_directive("location") with latitude = lat and longitude = lng;
+    } fired {
+      raise explicit event location_near with distance = dist;
+      set app:near true;
+      set app:dist dist;
+      set app:lat lat;
+      set app:long lng;
+    } else {
+      raise explicit event location_far with distance = dist;
+      set app:near false;
+      set app:dist dist;
+      set app:lat lat;
+      set app:long lng;
+    }
+    
   }
   
     rule process_fs_checkin{
@@ -23,9 +73,9 @@ ruleset locationProcessor{
      	notify("Hello", "world");
     }
     fired{
-  	raise pds event location_nearby for b505690x6
-  	 with key = "location"
-  	 and value = "Current Location Processor";
+  	  raise pds event location_nearby 
+  	    with key = "location"
+  	    and value = "Current Location Processor";
     }
   }
 }
