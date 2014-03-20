@@ -1,11 +1,5 @@
-
 ruleset locationProcessor{ 
   meta {
-    name "locationProcessor"
-    description <<
-      locationProcessor
-    >>
-    author "Ketih Halterman"
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
@@ -13,6 +7,19 @@ ruleset locationProcessor{
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
   }
   
-  
-  
+    rule process_fs_checkin{
+    select when foursquare checkin
+    
+    pre{
+    	data = "data";
+    }
+    {
+     	notify("Hello", "world");
+    }
+    fired{
+  	raise pds event location_nearby for b505690x6
+  	 with key = "location"
+  	 and value = "Current Location Processor";
+    }
+  }
 }
