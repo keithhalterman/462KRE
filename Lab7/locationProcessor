@@ -48,7 +48,7 @@ ruleset locationProcessor{
       set app:near true;
       set app:dist dist;
       set app:lat lat;
-      set app:long lng;
+      set app:lng lng;
     } else {
       raise explicit event location_far with distance = dist;
       set app:near false;
@@ -67,11 +67,11 @@ ruleset locationProcessor{
         lng = last_checkin.pick("$.lng");
       }
       {
-        notify("latitude",lat) with sticky = true;
-        notify("lng",lng) with sticky = true;
+        notify("Checkin lat",lat) with sticky = true;
+        notify("checkin lng",lng) with sticky = true;
         notify("distance",app:dist + " miles") with sticky = true;
-        notify("nearby lat", app:lat) with sticky = true;
-        notify("nearby lng", app:lng) with sticky = true;
+        notify("URL lat", app:lat) with sticky = true;
+        notify("URL lng", app:lng) with sticky = true;
         notify("dist now", distance_calc(lat,lng,app:lat,app:lng)) with sticky = true;
       }
     }
