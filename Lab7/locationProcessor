@@ -1,0 +1,18 @@
+
+ruleset locationProcessor{ 
+  meta {
+    name "locationProcessor"
+    description <<
+      locationProcessor
+    >>
+    author "Ketih Halterman"
+    logging off
+    use module a169x701 alias CloudRain
+    use module a41x186  alias SquareTag
+    
+    //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
+  }
+  
+  
+  
+}
