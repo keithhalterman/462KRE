@@ -1,36 +1,39 @@
-//b505690x8
-
-ruleset nearbyListener{ 
+ruleset Location {
   meta {
-    name "nearbyListener"
+    name "LocationData"
+    //b505204x3
     description <<
-      nearbyListener
+     Location Data
     >>
-    author "Ketih Halterman"
+    author ""
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
     
-       key twilio {
-      "account_sid" : "AC3d897a777377f0b0ad95aaf4d02f0618",
-      "auth_token"  : "7a27308a518d183eb0b49b1979697eeb"
+    provides getLocation
+
+  }
+  dispatch {
     }
-    use module a8x115 alias twilio with twiliokeys = keys:twilio()
-    
-    //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
-  }
+  global {
   
-//  rule nearby {
-//    select when explicit location_nearby
-//  }
+      getLocation = function(key){
+          ent:map.pick(key);
+      }
+      
+    }
   
-//  rule far {
-//    select when explicit location_far
-//  }
- 
-  rule sms {
-    select when pageview ".*"
-    twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
+  rule add_location_item{
+    select when pds:new_location_data
+    pre{
+        key = event:attr("key");
+        value = event:attr("value");
+        map = {};
+        map.put([key] ,value);
+    	}
+    always {
+        set ent:locationData map; 
+    }
   }
-    
+
 }
