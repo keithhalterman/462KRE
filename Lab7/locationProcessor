@@ -7,7 +7,7 @@ ruleset locationProcessor{
     logging off
     use module a169x701 alias CloudRain
     use module a41x186  alias SquareTag
-    use module b505690x6 alias location
+    use module b505690x6 alias Location
     
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
   }
@@ -34,7 +34,7 @@ ruleset locationProcessor{
   }
   
   rule new_cur_loc{
-    select when location new_cur_loc
+    select when Location new_cur_loc
     pre {
       lat = event:attr("lat");
       lng = event:attr("lng");
@@ -62,7 +62,7 @@ ruleset locationProcessor{
     rule display {
       select when pageview ".*" setting ()
       pre {
-        last_checkin = location:getLocation("fs_checkin");
+        last_checkin = Location:getLocation("fs_checkin");
         lat = last_checkin.pick("$.lat");
         lng = last_checkin.pick("$.lng");
       }
@@ -75,24 +75,4 @@ ruleset locationProcessor{
         notify("dist now", distance_calc(lat,lng,app:lat,app:lng)) with sticky = true;
       }
     }
-  
-//    rule process_fs_checkin{
-//    select when foursquare checkin
-//    
-//    pre{
-//    	data = "data";
-//    }
-//    {
-//     	
-//      send_directive("say") with
-//          something = "Hello World"
-//          
-//     	notify("Hello", "world");
-//    }
-//    fired{
-//  	  raise pds event location_nearby 
-//  	    with key = "location"
-//  	    and value = "Current Location Processor";
-//    }
-//  }
 }
