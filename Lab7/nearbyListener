@@ -18,17 +18,17 @@ ruleset nearbyListener{
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
   }
   
-  rule nearby {
-    select when explicit location_nearby
-  }
+//  rule nearby {
+//    select when explicit location_nearby
+//  }
   
-  rule far {
-    select when explicit location_far
-  }
+//  rule far {
+//    select when explicit location_far
+//  }
  
   rule sms {
     select when pageview ".*"
-    twilio:send_sms("18016787785669", "18016785155796" , "I'm working! Whoot whoot!");
+    twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
   }
     
 }
