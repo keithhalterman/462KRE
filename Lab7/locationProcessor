@@ -1,3 +1,5 @@
+//b505690x10
+
 ruleset locationProcessor{ 
   meta {
     logging off
