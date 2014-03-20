@@ -42,7 +42,7 @@ ruleset FourSquare {   //b505690x1.dev
         set ent:lat lat;
         set ent:lng lng;
         
-        raise pds event new_location_data for b505690x6
+        raise pds event new_location_data for Location
 		with key = "fs_checkin"
 		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
