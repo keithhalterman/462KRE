@@ -10,12 +10,20 @@ ruleset nearbyListener{
     use module a41x186  alias SquareTag
     
        key twilio {
-      "account_sid" : "AC5fbedf523cfdb566b063883e54aedf1f",
-      "auth_token"  : "7f854b9b2c9362d77ccc848c46a0a6ef"
+      "account_sid" : "AC3d897a777377f0b0ad95aaf4d02f0618",
+      "auth_token"  : "7a27308a518d183eb0b49b1979697eeb"
     }
     use module a8x115 alias twilio with twiliokeys = keys:twilio()
     
     //EVENT CHANEL ID: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
+  }
+  
+  rule nearby {
+    select when explicit location_nearby
+  }
+  
+  rule far {
+    select when explicit location_far
   }
  
    // create a rule that is fired on an inbound call
