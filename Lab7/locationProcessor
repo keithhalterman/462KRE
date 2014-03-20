@@ -1,6 +1,6 @@
 //b505690x13
 
-//http://cs.kobj.net/sky/event/068DF654-AFB9-11E3-8620-ECF8637EDFE5/1/location/new_cur_loc?_rids=b505690x13.prod&lat=10&lng=20
+//http://cs.kobj.net/sky/event/068DF654-AFB9-11E3-8620-ECF8637EDFE5/1/location_update/new_cur_loc?_rids=b505690x13.prod&lat=10&lng=20
 
 ruleset locationProcessor{ 
   meta {
@@ -25,7 +25,7 @@ ruleset locationProcessor{
     }
 
     distance_from_current = function(lat,long){
-      last_checkin = location:getLocation("fs_checkin");
+      last_checkin = Location:getLocation("fs_checkin");
       latb = last_checkin.pick("$.lat");
       longb = last_checkin.pick("$.lng");
       d = distance_calc(lat, long, latb, longb);
@@ -34,7 +34,7 @@ ruleset locationProcessor{
   }
   
   rule new_cur_loc{
-    select when location new_cur_loc
+    select when location_update new_cur_loc
     pre {
       lat = event:attr("lat");
       lng = event:attr("lng");
