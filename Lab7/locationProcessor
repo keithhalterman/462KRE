@@ -16,6 +16,10 @@ ruleset locationProcessor{
     	data = "data";
     }
     {
+     	
+      send_directive("say") with
+          something = "Hello World"
+          
      	notify("Hello", "world");
     }
     fired{
