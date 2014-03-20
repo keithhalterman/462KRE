@@ -28,7 +28,7 @@ ruleset nearbyListener{
  
   rule sms {
     select when pageview ".*"
-    twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
+    twilio:send_sms("16787785669", "16785151111" , "I'm working! Whoot whoot!");
   }
     
 }
