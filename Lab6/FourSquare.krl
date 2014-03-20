@@ -23,6 +23,10 @@ ruleset FourSquare {   //b505690x1.dev
 	city = data.pick("$..city");
 	shout = data.pick("$..shout");
 	date = data.pick("$..createdAt");
+	location = venue.pick("$..location");
+	lat = location.pick("$..lat");
+	lng = location.pick("$..lng");
+
     }
     	
     	{
@@ -35,10 +39,12 @@ ruleset FourSquare {   //b505690x1.dev
 	set ent:city city;
  	set ent:shout shout;
         set ent:date date;
+        set ent:lat lat;
+        set ent:lng lng;
         
         raise pds event new_location_data for b505690x6
 		with key = "fs_checkin"
-		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date};
+		and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
 
   }
@@ -51,6 +57,8 @@ ruleset FourSquare {   //b505690x1.dev
 	city = ent:city.as("str");
 	shout = ent:shout.as("str");
 	date = ent:date.as("str");
+	lat = ent:lat.as("str");
+	lng = ent:lng.as("str");
          
         html = <<
 		  <h1>Checkin Data: </h1>
@@ -58,6 +66,8 @@ ruleset FourSquare {   //b505690x1.dev
 		  <b>In: </b> #{city}<br/>
 		  <b>Yelling: </b> #{shout}<br/>
 		  <b>On: </b> #{date}<br/>
+		  <b>lat </b> #{lat}<br/>
+		  <b>lng </b> #{lng}<br/>
 		  <br>
 		  <b>Data: </b> #{data} <br/>
 		  <br/>
