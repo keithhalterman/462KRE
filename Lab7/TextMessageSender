@@ -23,7 +23,7 @@ ruleset TextMessageSender{
     }
     {
       send_directive(message) with dist = distance;
-      twilio:send_sms("19165348410", "16785155796" , message);
+      twilio:send_sms("16787785669", "16785155874" , message);
     }
     fired{
       set app:message message;
@@ -50,7 +50,7 @@ ruleset TextMessageSender{
     {
     //notify("test", "this is a test to make this work");
     //twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
-    twilio:send_sms("19165348410", "16785155874" , "I'm working! Whoot whoot!");
+    twilio:send_sms("16787785669", "16785155874" , "I'm working! Whoot whoot!");
     notify("Text Sent Update", app:message);
     }
   }
