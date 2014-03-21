@@ -22,10 +22,12 @@ ruleset TextMessageSender{
       message = "Event Fired from " + distance.as("str") + " miles away.";
     }
     {
-      app:message = message;
       send_directive(message) with dist = distance;
       twilio:send_sms("19165348410", "16785155796" , message);
     }
+    fired{
+      set app:message message;
+      }
     
   }
   
@@ -36,8 +38,10 @@ ruleset TextMessageSender{
       message = "Very Far away: Event Fired from " + distance.as("str") + " miles away.";
     }
     {
-      app:message = message;
       send_directive(message) with dist = distance;
+    }
+    fired{
+      set app:message message;
     }
   }
  
