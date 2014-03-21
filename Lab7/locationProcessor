@@ -1,6 +1,6 @@
 //b505690x13
 
-//http://cs.kobj.net/sky/event/068DF654-AFB9-11E3-8620-ECF8637EDFE5/1/location_update/new_cur_loc?_rids=b505690x13.prod&lat=10&lng=20
+//http://cs.kobj.net/sky/event/068DF654-AFB9-11E3-8620-ECF8637EDFE5/1234567890/location_update/new_cur_loc?_rids=b505690x13&lat=453&lng=-111
 
 ruleset locationProcessor{ 
   meta {
