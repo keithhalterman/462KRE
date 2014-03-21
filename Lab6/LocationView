@@ -41,7 +41,8 @@ ruleset LocationView {
 				<p>City: #{city} <br /></p>
 				<p>Shout: #{shout} <br /></p>
 				<p>Date: #{date} <br /></p>
-				<p>Date: #{date} <br /></p>
+				<p>Lat: #{lat} <br /></p>
+				<p>Lng: #{lng} <br /></p>
 				>>;
 	}
 	{
