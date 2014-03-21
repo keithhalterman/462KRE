@@ -44,13 +44,13 @@ ruleset locationProcessor{
     {
       send_directive("location") with latitude = lat and longitude = lng;
     } fired {
-      raise explicit event location_near for textSender with distance = dist;
+      raise explicit event location_near for b505690x14 with distance = dist;
       set app:near true;
       set app:dist dist;
       set app:lat lat;
       set app:lng lng;
     } else {
-      raise explicit event location_far for textSender with distance = dist;
+      raise explicit event location_far for b505690x14 with distance = dist;
       set app:near false;
       set app:dist dist;
       set app:lat lat;
