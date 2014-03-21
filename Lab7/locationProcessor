@@ -63,8 +63,8 @@ ruleset locationProcessor{
       select when pageview ".*" setting ()
       pre {
         checkin = Location:getLocation("fs_checkin");
-        lat = checkin.pick("$.lat");
-        lng = checkin.pick("$.lng");
+        lat = checkin.pick("$.lat").encode();
+        lng = checkin.pick("$.lng").encode();
       }
       {
         notify("Checkin lat",lat) with sticky = true;
