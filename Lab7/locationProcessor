@@ -24,9 +24,9 @@ ruleset locationProcessor{
     }
 
     distance_from_current = function(lat,long){
-      last_checkin = Location:getLocation("fs_checkin");
-      latb = last_checkin.pick("$.lat");
-      longb = last_checkin.pick("$.lng");
+      checkin = Location:getLocation("fs_checkin");
+      latb = checkin.pick("$.lat");
+      longb = checkin.pick("$.lng");
       d = distance_calc(lat, long, latb, longb);
       d;
     }
@@ -62,9 +62,9 @@ ruleset locationProcessor{
     rule display {
       select when pageview ".*" setting ()
       pre {
-        last_checkin = Location:getLocation("fs_checkin");
-        lat = last_checkin.pick("$.lat");
-        lng = last_checkin.pick("$.lng");
+        checkin = Location:getLocation("fs_checkin");
+        lat = checkin.pick("$.lat");
+        lng = checkin.pick("$.lng");
       }
       {
         notify("Checkin lat",lat) with sticky = true;
