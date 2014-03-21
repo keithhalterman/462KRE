@@ -6,8 +6,8 @@ ruleset TextMessageSender{
     use module a41x186  alias SquareTag
     
     key twilio {
-      "account_sid" : "AC3d897a777377f0b0ad95aaf4d02f0618",
-      "auth_token"  : "7a27308a518d183eb0b49b1979697eeb"
+      "account_sid" : "AC526b1c17be8e720201f7eec99818f34f",
+      "auth_token"  : "e43ebc0846c98eb15ba9a14c2f5a8778"
     }
     
     use module a8x115 alias twilio with twiliokeys = keys:twilio()
@@ -44,7 +44,7 @@ ruleset TextMessageSender{
     {
     //notify("test", "this is a test to make this work");
     //twilio:send_sms("16787785669", "16785155796" , "I'm working! Whoot whoot!");
-    twilio:send_sms("19165348410", "16785155796" , "This is a test text");
+    twilio:send_sms("19165348410", "16785155874" , "I'm working! Whoot whoot!");
     notify("Text Sent Update", "Yay, Your message has been sent");
     }
   }
