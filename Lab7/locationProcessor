@@ -72,7 +72,7 @@ ruleset locationProcessor{
         notify("distance",app:dist + " miles") with sticky = true;
         notify("URL lat", app:lat) with sticky = true;
         notify("URL lng", app:lng) with sticky = true;
-        notify("dist now", distance_calc(lat,lng,app:lat,app:lng)) with sticky = true;
+        notify("dist now", app:dist) with sticky = true;
       }
     }
 }
