@@ -21,7 +21,7 @@ ruleset locationProcessor{
       rlatb = math:deg2rad(latb);
       rlngb = math:deg2rad(lngb);
       distance = math:great_circle_distance(rlnga,r90 - rlata, rlngb,r90 - rlatb, rEk);
-      distance;
+      distance
     }
 
     distance_from_current = function(lat,long){
