@@ -66,10 +66,10 @@ ruleset MultiFourSquare{
       <h1>Checkin Data: </h1>
       <b>I Was At: </b> #{venue}<br/>
       <b>In: </b> #{city}<br/>
-      <b>Yelling: </b> #{shout}<br/>
+      <b>Shouting: </b> #{shout}<br/>
       <b>On: </b> #{date}<br/>
-      <b>lat </b> #{lat}<br/>
-      <b>lng </b> #{lng}<br/>
+      <b>latitude: </b> #{lat}<br/>
+      <b>longitude: </b> #{lng}<br/>
       <br>
       <b>Data: </b> #{data} <br/>
       <br/>
