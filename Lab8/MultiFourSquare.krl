@@ -63,18 +63,18 @@ ruleset MultiFourSquare{
   }
   
   rule updateAccounts {
-  
+    select when pageview ".*"
     foreach subscription_map setting(pid) {
       send_directive("Sending update") with checkin = "UPDATE WORKED";
       event:send(pid,"Text 1","Text 2") with attrs = ent:data;
     }
   }
   
-  rule location_catch {
-    select when update_accounts
-    
-  
-  }
+//  rule location_catch {
+//   select when update_accounts
+//    
+//  
+//  }
   
   
   rule display{
@@ -89,7 +89,7 @@ ruleset MultiFourSquare{
       lng = ent:lng.as("str");
       
       html = <<
-      <h1>Checkin Data: </h1>
+      <h1>Checkin Data Lab 8: </h1>
       <b>I Was At: </b> #{venue}<br/>
       <b>In: </b> #{city}<br/>
       <b>Shouting: </b> #{shout}<br/>
