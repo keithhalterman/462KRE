@@ -2,6 +2,12 @@
 //Account 2: 11DED720-B433-11E3-81D5-BFDA283232C8
 //Account 3: 05629D2E-B433-11E3-9A1E-8283E71C24E1
 
+// http://raw.github.com/keithhalterman/462KRE/master/Lab8/MultiFourSquare.krl
+
+//Account 1: b505690x16.dev
+//Account 2: b505832x0.dev
+//Account 3: b505834x0.dev
+
 ruleset MultiFourSquare{ 
   meta {
     logging off
