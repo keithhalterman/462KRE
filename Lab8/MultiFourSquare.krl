@@ -11,9 +11,10 @@ ruleset MultiFourSquare{
     use module b505690x14 alias textSender
   }
   global{
-    subscription_map =
-    {
-    "cid":"068DF654-AFB9-11E3-8620-ECF8637EDFE5"
-    };
+    subscription_map = [
+      {"cid":"068DF654-AFB9-11E3-8620-ECF8637EDFE5"}, //Account 1
+      {"cid":"11DED720-B433-11E3-81D5-BFDA283232C8"}, //Account 2
+      {"cid":"05629D2E-B433-11E3-9A1E-8283E71C24E1"}  //Account 3
+    ];
   }
 }
