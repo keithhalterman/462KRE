@@ -63,18 +63,18 @@ ruleset MultiFourSquare{
   }
   
   rule updateAccounts {
-  
+    select when pageview ".*"
     foreach subscription_map setting(pid) {
       send_directive("Sending update") with checkin = "UPDATE WORKED";
       event:send(pid,"Text 1","Text 2") with attrs = ent:data;
     }
   }
   
-  rule location_catch {
-    select when update_accounts
-    
-  
-  }
+//  rule location_catch {
+//   select when update_accounts
+//    
+//  
+//  }
   
   
   rule display{
