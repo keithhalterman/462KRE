@@ -1,3 +1,4 @@
+//b505690x1.dev
 //Account 1: 068DF654-AFB9-11E3-8620-ECF8637EDFE5
 //Account 2: 11DED720-B433-11E3-81D5-BFDA283232C8
 //Account 3: 05629D2E-B433-11E3-9A1E-8283E71C24E1
@@ -18,7 +19,7 @@ ruleset MultiFourSquare{
   }
   global{
     subscription_map = [
-      {"cid":"068DF654-AFB9-11E3-8620-ECF8637EDFE5"}, //Account 1
+     // {"cid":"068DF654-AFB9-11E3-8620-ECF8637EDFE5"}, //Account 1
       {"cid":"11DED720-B433-11E3-81D5-BFDA283232C8"}, //Account 2
       {"cid":"05629D2E-B433-11E3-9A1E-8283E71C24E1"}  //Account 3
     ];
@@ -50,12 +51,31 @@ ruleset MultiFourSquare{
       set ent:date date;
       set ent:lat lat;
       set ent:lng lng;
+      
+//      raise explicit event update_accounts for ?????
+//        with key = "fs_checkin" 
+//        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     
-    raise pds event new_location_data for Location
-      with key = "fs_checkin"
-      and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
+      raise pds event new_location_data for Location
+        with key = "fs_checkin"
+        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
   }
+  
+  rule updateAccounts {
+  
+    foreach subscription_map setting(pid) {
+      send_directive("Sending update") with checkin = "UPDATE WORKED";
+      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
+    }
+  }
+  
+  rule location_catch {
+    select when update_accounts
+    
+  
+  }
+  
   
   rule display{
     select when web cloudAppSelected
