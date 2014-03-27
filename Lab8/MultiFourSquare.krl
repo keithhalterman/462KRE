@@ -4,9 +4,9 @@
 
 // http://raw.github.com/keithhalterman/462KRE/master/Lab8/MultiFourSquare.krl
 
-//Account 1: b505690x16.dev
-//Account 2: b505832x0.dev
-//Account 3: b505834x0.dev
+//Account 1: b505690x16
+//Account 2: b505832x0
+//Account 3: b505834x0
 
 ruleset MultiFourSquare{ 
   meta {
