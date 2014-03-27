@@ -89,7 +89,7 @@ ruleset MultiFourSquare{
       lng = ent:lng.as("str");
       
       html = <<
-      <h1>Checkin Data: </h1>
+      <h1>Checkin Data Lab 8: </h1>
       <b>I Was At: </b> #{venue}<br/>
       <b>In: </b> #{city}<br/>
       <b>Shouting: </b> #{shout}<br/>
