@@ -51,12 +51,31 @@ ruleset MultiFourSquare{
       set ent:date date;
       set ent:lat lat;
       set ent:lng lng;
+      
+      raise explicit event update_accounts for ?????
+        with key = "fs_checkin" 
+        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     
-    raise pds event new_location_data for Location
-      with key = "fs_checkin"
-      and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
+      raise pds event new_location_data for Location
+        with key = "fs_checkin"
+        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
   }
+  
+  rule updateAccounts {
+  
+    foreach subscription_map {
+      send_directive("Sending update") with checkin = "UPDATE WORKED";
+      event:send(subscriber,"location","notification") with attrs = event:attr("data");
+    }
+  }
+  
+  rule location_catch {
+    select when update_accounts
+    
+  
+  }
+  
   
   rule display{
     select when web cloudAppSelected
