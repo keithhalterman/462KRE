@@ -63,7 +63,7 @@ ruleset MultiFourSquare{
   }
   
 
-  rule pageview {
+  rule view {
     select when pageview ".*"
     {
     notify("Is this working?","yes");
