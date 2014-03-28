@@ -81,8 +81,6 @@ ruleset MultiFourSquare{
       lat = location.pick("$..lat");
       lng = location.pick("$..lng");
     } 
-    {
-    }
     fired {
       set ent:data data;
       set ent:venue venue;
