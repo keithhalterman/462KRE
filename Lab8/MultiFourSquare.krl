@@ -41,6 +41,9 @@ ruleset MultiFourSquare{
     
     {
       send_directive("A FS Checkin") with checkin = "Im Here";
+      foreach subscription_map setting(pid) {
+          event:send(pid,"Text 1","Text 2") with attrs = data;
+      }
     }
     
     fired {
@@ -62,19 +65,36 @@ ruleset MultiFourSquare{
     }
   }
   
-  rule updateAccounts {
-    select when pageview ".*"
-    foreach subscription_map setting(pid) {
-      send_directive("Sending update") with checkin = "UPDATE WORKED";
-      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
+ // rule updateAccounts {
+//    select when pageview ".*"
+//    foreach subscription_map setting(pid) {
+//      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
+//    }
+//  }
+
+  rule location_catch {
+    select when location notification
+    pre {
+      data = event:attr("data");
+      venue = data.pick("$..venue");
+      city = data.pick("$..city");
+      shout = data.pick("$..shout");
+      date = data.pick("$..createdAt");
+      location = venue.pick("$..location");
+      lat = location.pick("$..lat");
+      lng = location.pick("$..lng");
+    } 
+    fired {
+      set ent:data data;
+      set ent:venue venue;
+      set ent:city city;
+      set ent:shout shout;
+      set ent:date date;
+      set ent:lat lat;
+      set ent:lng lng;
+      set ent:testing "CAUGHT THE EVENT";
     }
   }
-  
-//  rule location_catch {
-//   select when update_accounts
-//    
-//  
-//  }
   
   
   rule display{
@@ -87,6 +107,7 @@ ruleset MultiFourSquare{
       date = ent:date.as("str");
       lat = ent:lat.as("str");
       lng = ent:lng.as("str");
+      testing = ent:testing;
       
       html = <<
       <h1>Checkin Data Lab 8: </h1>
@@ -96,6 +117,7 @@ ruleset MultiFourSquare{
       <b>On: </b> #{date}<br/>
       <b>latitude: </b> #{lat}<br/>
       <b>longitude: </b> #{lng}<br/>
+      <br> #{testing}
       <br>
       <b>Data: </b> #{data} <br/>
       <br/>
