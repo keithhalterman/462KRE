@@ -67,7 +67,7 @@ ruleset MultiFourSquare{
   }
 
   rule location_catch {
-    select when location notification
+    select when fs_checkin
     pre {
       data = event:attr("data");
       venue = data.pick("$..venue");
