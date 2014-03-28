@@ -66,8 +66,8 @@ ruleset MultiFourSquare{
     select when pageview ".*"
     {
     notify("Is this working?","yes");
-          foreach subscription_map setting(pid) {
-          notify(pid,"yes");
+    foreach subscription_map setting(cid) {
+         notify(cid.pick("cid"),"yes");
 //          event:send(pid,"Text 1","Text 2") with attrs = data;
 }
     }
