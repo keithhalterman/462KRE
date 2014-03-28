@@ -55,87 +55,21 @@ ruleset MultiFourSquare{
       set ent:lat lat;
       set ent:lng lng;
       
-//      raise explicit event update_accounts for ?????
-//        with key = "fs_checkin" 
-//        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
-    
+ 
       raise pds event new_location_data for Location
         with key = "fs_checkin"
         and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
   }
   
- // rule updateAccounts {
-//    select when pageview ".*"
-//    foreach subscription_map setting(pid) {
-//      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
-//    }
-//  }
 
   rule pageview {
     select when pageview ".*"
     {
     notify("Is this working?","yes");
-//    foreach subscription_map setting(pid) {
-//          notify(pid,"yes");
-          //event:send(pid,"Text 1","Text 2") with attrs = data;
-//    }
     }
   }
 
-  rule location_catch {
-    select when location notification
-    pre {
-      data = event:attr("data");
-      venue = data.pick("$..venue");
-      city = data.pick("$..city");
-      shout = data.pick("$..shout");
-      date = data.pick("$..createdAt");
-      location = venue.pick("$..location");
-      lat = location.pick("$..lat");
-      lng = location.pick("$..lng");
-    } 
-    fired {
-      set ent:data data;
-      set ent:venue venue;
-      set ent:city city;
-      set ent:shout shout;
-      set ent:date date;
-      set ent:lat lat;
-      set ent:lng lng;
-      set ent:testing "CAUGHT THE EVENT";
-    }
-  }
-  
-  
-  rule display{
-    select when web cloudAppSelected
-    pre{
-      data = ent:data;
-      venue = ent:venue.pick("$.name").as("str");
-      city = ent:city.as("str");
-      shout = ent:shout.as("str");
-      date = ent:date.as("str");
-      lat = ent:lat.as("str");
-      lng = ent:lng.as("str");
-      testing = ent:testing;
-      
-      html = <<
-      <h1>Checkin Data Lab 8: </h1>
-      <b>I Was At: </b> #{venue}<br/>
-      <b>In: </b> #{city}<br/>
-      <b>Shouting: </b> #{shout}<br/>
-      <b>On: </b> #{date}<br/>
-      <b>latitude: </b> #{lat}<br/>
-      <b>longitude: </b> #{lng}<br/>
-      <br> #{testing}
-      <br>
-      <b>Data: </b> #{data} <br/>
-      <br/>
-      >>;
-    }
-      CloudRain:createLoadPanel("LAST CHECKIN", { },  html);
-  }
     
 }
 
