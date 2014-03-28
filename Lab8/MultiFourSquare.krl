@@ -41,8 +41,8 @@ ruleset MultiFourSquare{
     
     {
       send_directive("A FS Checkin") with checkin = "Im Here";
-     //foreach subscription_map setting (pid) 
-       //   event:send(pid,"Text 1","Text 2") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
+      foreach subscription_map setting (pid) 
+          event:send(pid,"Text 1","Text 2") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
       
     }
     
