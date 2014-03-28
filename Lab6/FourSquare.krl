@@ -41,9 +41,9 @@ ruleset MultiFourSquare{
     
     {
       send_directive("A FS Checkin") with checkin = "Im Here";
-      foreach subscription_map setting(pid) {
-          event:send(pid,"Text 1","Text 2") with attrs = data;
-      }
+//      foreach subscription_map setting(pid) {
+//          event:send(pid,"Text 1","Text 2") with attrs = data;
+//      }
     }
     
     fired {
@@ -55,31 +55,17 @@ ruleset MultiFourSquare{
       set ent:lat lat;
       set ent:lng lng;
       
-//      raise explicit event update_accounts for ?????
-//        with key = "fs_checkin" 
-//        and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
-    
       raise pds event new_location_data for Location
         with key = "fs_checkin"
         and value = {"venue" : venue.pick("$.name"), "city" : city, "shout" : shout, "date" : date, "lat" : lat, "lng" : lng};
     }
   }
-  
- // rule updateAccounts {
-//    select when pageview ".*"
-//    foreach subscription_map setting(pid) {
-//      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
-//    }
-//  }
 
-  rule pageview {
+
+  rule pageviewer {
     select when pageview ".*"
     {
     notify("Is this working?","yes");
-//    foreach subscription_map setting(pid) {
-//          notify(pid,"yes");
-          //event:send(pid,"Text 1","Text 2") with attrs = data;
-//    }
     }
   }
 
