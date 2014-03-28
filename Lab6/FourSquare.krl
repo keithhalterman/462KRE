@@ -77,7 +77,7 @@ ruleset MultiFourSquare{
     {
     foreach subscription_map setting(pid) {
           notify(pid,"yes");
-          event:send(pid,"Text 1","Text 2") with attrs = data;
+          //event:send(pid,"Text 1","Text 2") with attrs = data;
     }
   }
   }
