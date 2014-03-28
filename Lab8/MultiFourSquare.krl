@@ -41,8 +41,6 @@ ruleset MultiFourSquare{
     
     {
       send_directive("A FS Checkin") with checkin = "Im Here";
-     //foreach subscription_map setting (pid) 
-       //   event:send(pid,"Text 1","Text 2") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
       
     }
     
@@ -62,15 +60,10 @@ ruleset MultiFourSquare{
   }
 
 
-  rule pageviewer {
-    select when pageview ".*"
-    {
-      notify("Is this working? 12334","yes");
-      //foreach subscription_map setting(cid) {
-         //  notify("testing","yes");
-           //event:send(pid,"Text 1","Text 2") with attrs = data;
-      //}
-    }
+  rule updateOtherApps {
+    select when foursquare checkin
+    foreach subscription_map setting (pid) 
+          event:send(pid,"Text 1","Text 2") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
   }
 
   rule location_catch {
