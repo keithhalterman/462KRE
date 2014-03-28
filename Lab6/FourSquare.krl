@@ -41,6 +41,9 @@ ruleset MultiFourSquare{
     
     {
       send_directive("A FS Checkin") with checkin = "Im Here";
+      foreach subscription_map setting(pid) {
+          event:send(pid,"Text 1","Text 2") with attrs = data;
+      }
     }
     
     fired {
@@ -62,12 +65,12 @@ ruleset MultiFourSquare{
     }
   }
   
-  rule updateAccounts {
-    select when pageview ".*"
-    foreach subscription_map setting(pid) {
-      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
-    }
-  }
+ // rule updateAccounts {
+//    select when pageview ".*"
+//    foreach subscription_map setting(pid) {
+//      event:send(pid,"Text 1","Text 2") with attrs = ent:data;
+//    }
+//  }
 
   rule location_catch {
     select when location notification
