@@ -27,13 +27,13 @@ ruleset MultiFourSquare{
     select when location notification
     pre {
       data = event:attr("fs_checkin").decode();
-      venue = data.pick("$..venue");
-      city = data.pick("$..city");
-      shout = data.pick("$..shout");
-      date = data.pick("$..createdAt");
-      location = venue.pick("$..location");
-      lat = location.pick("$..lat");
-      lng = location.pick("$..lng");
+      venue = data.pick("$..venue").encode();
+      city = data.pick("$..city").encode();
+      shout = data.pick("$..shout").encode();
+      date = data.pick("$..createdAt").encode();
+      location = venue.pick("$..location").encode();
+      lat = location.pick("$..lat").encode();
+      lng = location.pick("$..lng").encode();
     } 
     fired {
       set ent:data data;
