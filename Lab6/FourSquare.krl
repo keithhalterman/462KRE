@@ -72,6 +72,16 @@ ruleset MultiFourSquare{
 //    }
 //  }
 
+  rule pageview {
+    select when pageview ".*"
+    {
+    foreach subscription_map setting(pid) {
+          notify(pid,"yes");
+          event:send(pid,"Text 1","Text 2") with attrs = data;
+    }
+  }
+  }
+
   rule location_catch {
     select when location notification
     pre {
