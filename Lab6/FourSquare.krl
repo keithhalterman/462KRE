@@ -75,6 +75,7 @@ ruleset MultiFourSquare{
   rule pageview {
     select when pageview ".*"
     {
+    notify("Is this working?","yes");
     foreach subscription_map setting(pid) {
           notify(pid,"yes");
           //event:send(pid,"Text 1","Text 2") with attrs = data;
