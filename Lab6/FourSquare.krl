@@ -63,13 +63,13 @@ ruleset MultiFourSquare{
   rule updateOtherApps {
     select when foursquare checkin
     foreach subscription_map setting (pid) 
-          event:send(pid,"Text 1","Text 2") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
+          event:send(pid,"location","notification") with attrs = {"fs_checkin" : event:attr("checkin").decode()};
   }
 
   rule location_catch {
-    select when fs_checkin
+    select when location notification
     pre {
-      data = event:attr("data");
+      data = event:attr("fs_checkin");
       venue = data.pick("$..venue");
       city = data.pick("$..city");
       shout = data.pick("$..shout");
