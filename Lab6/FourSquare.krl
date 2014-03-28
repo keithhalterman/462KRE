@@ -65,11 +65,11 @@ ruleset MultiFourSquare{
   rule pageviewer {
     select when pageview ".*"
     {
-      notify("Is this working?","yes");
-      foreach subscription_map setting(cid) {
-           notify("testing","yes");
+      notify("Is this working? 1234","yes");
+      //foreach subscription_map setting(cid) {
+         //  notify("testing","yes");
            //event:send(pid,"Text 1","Text 2") with attrs = data;
-      }
+      //}
     }
   }
 
